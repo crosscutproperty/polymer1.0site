@@ -1,0 +1,40 @@
+{
+  "name": "Cross Cut Property Services Inc",
+  "short_name": "Cross Cut Property",
+  "icons": [{
+        "src": "images/touch/cc-icon-72x72.png",
+        "sizes": "72x72",
+        "type": "image/png"
+      }, {
+        "src": "images/touch/cc-icon-96x96.png",
+        "sizes": "96x96",
+        "type": "image/png"
+      }, {
+        "src": "images/touch/cc-icon-128x128.png",
+        "sizes": "128x128",
+        "type": "image/png"
+      }, {
+        "src": "images/touch/cc- ms-touch-icon-144x144.png",
+        "sizes": "144x144",
+        "type": "image/png"
+      }, {
+        "src": "images/touch/cc-apple-touch-icon.png",
+        "sizes": "152x152",
+        "type": "image/png"
+      }, {
+        "src": "images/touch/cc-chrome-touch-icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },{
+        "src": "images/touch/cc-chrome-splashscreen-icon-384x384.png",
+        "sizes": "384x384",
+        "type": "image/png"
+      },{
+        "src": "images/touch/cc-icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }],
+  "background_color": "#285728",
+  "display": "standalone",
+  "theme_color": "#285728"
+}

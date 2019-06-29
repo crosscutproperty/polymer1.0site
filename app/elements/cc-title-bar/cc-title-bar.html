@@ -1,0 +1,267 @@
+<!doctype html>
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="cc-title-bar">
+  <template>
+    <style>
+/****************************************************************************************************/
+        :host {
+        	display:block;
+        	position: relative;
+          z-index:100;
+        	min-width: 100%;
+          max-width: 100%;
+        	width: 100%;
+          min-height:26.55vw;
+          margin:0;
+          padding:0;
+          overflow:hidden;
+          -webkit-box-sizing: content-box;
+          -moz-box-sizing: content-box;
+          box-sizing: content-box;
+        }
+        :host > ul {
+        	position: relative;
+        	z-index: 1;
+        }
+        :host > ul > li.img img {
+          z-index:4;
+          width: 100%;
+        	max-width: 100%;
+        }
+        :host > ul > li.img {
+          z-index:3;
+        	/*font-size: 0pt;
+        	-khtml-user-select: none;
+        	-moz-user-select: none;
+        	user-select: none;*/
+        }
+        :host > ul > li {
+        	position: relative;
+        	display: inline-block;
+          overflow:hidden;
+        	width: 100%;
+          max-width: 100%;
+        	/*overflow: hidden;*/
+        	-webkit-box-sizing: border-box;
+        	-moz-box-sizing: border-box;
+        	box-sizing: border-box;
+        }
+        :host > ul > li {
+          display: inline-block;
+        	position: absolute;
+        	left: 0;top: 0;
+          padding:0 !important;
+          margin:0 !important
+        	z-index: 1;
+        }
+
+        @-webkit-keyframes slideleft2 {
+          0% { -webkit-transform: scale(1.004) translate(201%, 0%); z-index: 2; }
+          4.16666% {visibility:visible; -webkit-transform: scale(1.004) translate(201%, 0%); z-index: 2;}
+          20.828% { -webkit-transform: scale(1.004) translate(201%, 0%); z-index: 2;}
+          25% {-webkit-transform:scale(1.004) translate(0%,0%); z-index: 2;}
+          41.664% {-webkit-transform:scale(1.004) translate(0%,0%); z-index: 2;}
+          45.828% {-webkit-transform: scale(1.004) translate(-101%, 0%); z-index: 2; }
+          45.832% {visibility:hidden; -webkit-transform:scale(1.004) translate(-101%,0%); z-index: 2;}
+          45.836% {visibility:hidden; -webkit-transform:scale(1.004) translate(201%,0%); z-index: 2;}
+          62.496% {visibility: visible; -webkit-transform:scale(1.004) translate(201%,0%); z-index: 2;}
+          66.668% {-webkit-transform: scale(1.004) translate(0%, 0%); z-index: 2; }
+          95.832% {-webkit-transform: scale(1.004) translate(0%, 0%); z-index: 2; }
+          100% {-webkit-transform:scale(1.004) translate(-101%,0%); z-index: 2;}
+        }
+        @-moz-keyframes slideleft2 {
+          0% { -moz-transform: scale(1.004) translate(201%, 0%); z-index: 2; }
+          4.16666% {visibility:visible; -moz-transform: scale(1.004) translate(201%, 0%); z-index: 2;}
+          20.828% { -moz-transform: scale(1.004) translate(201%, 0%); z-index: 2;}
+          25% {-moz-transform:scale(1.004) translate(0%,0%); z-index: 2;}
+          41.664% {-moz-transform:scale(1.004) translate(0%,0%); z-index: 2;}
+          45.828% {-moz-transform: scale(1.004) translate(-101%, 0%); z-index: 2; }
+          45.832% {visibility:hidden; -moz-transform:scale(1.004) translate(-101%,0%); z-index: 2;}
+          45.836% {visibility:hidden; -moz-transform:scale(1.004) translate(201%,0%); z-index: 2;}
+          62.496% {visibility: visible; -moz-transform:scale(1.004) translate(201%,0%); z-index: 2;}
+          66.668% {-moz-transform: scale(1.004) translate(0%, 0%); z-index: 2; }
+          95.832% {-moz-transform: scale(1.004) translate(0%, 0%); z-index: 2; }
+          100% {-moz-transform:scale(1.004) translate(-101%,0%); z-index: 2;}
+        }
+        @-ms-keyframes slideleft2 {
+          0% { -ms-transform: scale(1.004) translate(201%, 0%); z-index: 2; }
+          4.16666% {visibility:visible; -ms-transform: scale(1.004) translate(201%, 0%); z-index: 2;}
+          20.828% { -ms-transform: scale(1.004) translate(201%, 0%); z-index: 2;}
+          25% {-ms-transform:scale(1.004) translate(0%,0%); z-index: 2;}
+          41.664% {-ms-transform:scale(1.004) translate(0%,0%); z-index: 2;}
+          45.828% {-ms-transform: scale(1.004) translate(-101%, 0%); z-index: 2; }
+          45.832% {visibility:hidden; -ms-transform:scale(1.004) translate(-101%,0%); z-index: 2;}
+          45.836% {visibility:hidden; -ms-transform:scale(1.004) translate(201%,0%); z-index: 2;}
+          62.496% {visibility: visible; -ms-transform:scale(1.004) translate(201%,0%); z-index: 2;}
+          66.668% {-ms-transform: scale(1.004) translate(0%, 0%); z-index: 2; }
+          95.832% {-ms-transform: scale(1.004) translate(0%, 0%); z-index: 2; }
+          100% {-ms-transform:scale(1.004) translate(-101%,0%); z-index: 2;}
+        }
+        @-o-keyframes slideleft2 {
+          0% { -0-transform: scale(1.004) translate(201%, 0%); z-index: 2; }
+          4.16666% {visibility:visible; -0-transform: scale(1.004) translate(201%, 0%); z-index: 2;}
+          20.828% { -0-transform: scale(1.004) translate(201%, 0%); z-index: 2;}
+          25% {-0-transform:scale(1.004) translate(0%,0%); z-index: 2;}
+          41.664% {-0-transform:scale(1.004) translate(0%,0%); z-index: 2;}
+          45.828% {-0-transform: scale(1.004) translate(-101%, 0%); z-index: 2; }
+          45.832% {visibility:hidden; -0-transform:scale(1.004) translate(-101%,0%); z-index: 2;}
+          45.836% {visibility:hidden; -0-transform:scale(1.004) translate(201%,0%); z-index: 2;}
+          62.496% {visibility: visible; -0-transform:scale(1.004) translate(201%,0%); z-index: 2;}
+          66.668% {-0-transform: scale(1.004) translate(0%, 0%); z-index: 2; }
+          95.832% {-0-transform: scale(1.004) translate(0%, 0%); z-index: 2; }
+          100% {-0-transform:scale(1.004) translate(-101%,0%); z-index: 2;}
+        }
+        @keyframes slideleft2 {
+          0% { transform: scale(1.004) translate(201%, 0%); z-index: 2; }
+          4.16666% {visibility:visible; transform: scale(1.004) translate(201%, 0%); z-index: 2;}
+          20.828% { transform: scale(1.004) translate(201%, 0%); z-index: 2;}
+          25% {transform:scale(1.004) translate(0%,0%); z-index: 2;}
+          41.664% {transform:scale(1.004) translate(0%,0%); z-index: 2;}
+          45.828% {transform: scale(1.004) translate(-101%, 0%); z-index: 2; }
+          45.832% {visibility:hidden; transform:scale(1.004) translate(-101%,0%); z-index: 2;}
+          45.836% {visibility:hidden; transform:scale(1.004) translate(201%,0%); z-index: 2;}
+          62.496% {visibility: visible; transform:scale(1.004) translate(201%,0%); z-index: 2;}
+          66.668% {transform: scale(1.004) translate(0%, 0%); z-index: 2; }
+          95.832% {transform: scale(1.004) translate(0%, 0%); z-index: 2; }
+          /*95.83% {transform:scale(1.004) translate(-101%,0%); z-index: 2;}*/
+          100% {transform:scale(1.004) translate(-101%,0%); z-index: 2;}
+        }
+
+        @-webkit-keyframes slideleft1 {
+        	85% {-webkit-transform: scale(1.004) translate(0%, 0%); z-index: 2; }
+        	100% {-webkit-transform: scale(1.004) translate(100%, 0%); z-index: 2; }
+          0% { -webkit-transform: scale(1.004) translate(201%, 0%); z-index: 2;opacity: 1; }
+          4.16666% { -webkit-transform: scale(1.004) translate(0%, 0%); z-index: 2;opacity: 1;}
+          20.828% { -webkit-transform: scale(1.004) translate(0%, 0%); z-index: 2;opacity: 1;}
+          25% {-webkit-transform:scale(1.004) translate(-101%,0%); z-index: 2;opacity: 1;}
+          25.004% {visibility:hidden; -webkit-transform:scale(1.004) translate(-101%,0%); z-index: 2;opacity: 1;}
+          25.008% {visibility:hidden; -webkit-transform:scale(1.004) translate(201%,0%); z-index: 2;opacity: 1;}
+          41.664% {visibility:visible; -webkit-transform: scale(1.004) translate(201%, 0%); z-index: 2;opacity: 1; }
+          45.828% { -webkit-transform: scale(1.004) translate(0%, 0%); z-index: 2;opacity: 1; }
+          62.496% { -webkit-transform: scale(1.004) translate(0%, 0%); z-index: 2; opacity: 1;}
+          66.668% {-webkit-transform:scale(1.004) translate(-101%,0%); z-index: 2;opacity: 1;}
+          100% {-webkit-transform:scale(1.004) translate(-101%,0%); z-index: 2;opacity: 1;}
+        }
+        @-moz-keyframes slideleft1 {
+          0% { -moz-transform: scale(1.004) translate(201%, 0%); z-index: 2;opacity: 1; }
+          4.16666% { -moz-transform: scale(1.004) translate(0%, 0%); z-index: 2;opacity: 1;}
+          20.828% { -moz-transform: scale(1.004) translate(0%, 0%); z-index: 2;opacity: 1;}
+          25% {-moz-transform:scale(1.004) translate(-101%,0%); z-index: 2;opacity: 1;}
+          25.004% {visibility:hidden; -moz-transform:scale(1.004) translate(-101%,0%); z-index: 2;opacity: 1;}
+          25.008% {visibility:hidden; -moz-transform:scale(1.004) translate(201%,0%); z-index: 2;opacity: 1;}
+          41.664% {visibility:visible; -moz-transform: scale(1.004) translate(201%, 0%); z-index: 2;opacity: 1; }
+          45.828% { -moz-transform: scale(1.004) translate(0%, 0%); z-index: 2;opacity: 1; }
+          62.496% { -moz-transform: scale(1.004) translate(0%, 0%); z-index: 2; opacity: 1;}
+          66.668% {-moz-transform:scale(1.004) translate(-101%,0%); z-index: 2;opacity: 1;}
+          100% {-moz-transform:scale(1.004) translate(-101%,0%); z-index: 2;opacity: 1;}
+        }*/
+        @-ms-keyframes slideleft1 {
+          0% { -ms-transform: scale(1.004) translate(201%, 0%); z-index: 2;opacity: 1; }
+          4.16666% { -ms-transform: scale(1.004) translate(0%, 0%); z-index: 2;opacity: 1;}
+          20.828% { -ms-transform: scale(1.004) translate(0%, 0%); z-index: 2;opacity: 1;}
+          25% {-ms-transform:scale(1.004) translate(-101%,0%); z-index: 2;opacity: 1;}
+          25.004% {visibility:hidden; -ms-transform:scale(1.004) translate(-101%,0%); z-index: 2;opacity: 1;}
+          25.008% {visibility:hidden; -ms-transform:scale(1.004) translate(201%,0%); z-index: 2;opacity: 1;}
+          41.664% {visibility:visible; -ms-transform: scale(1.004) translate(201%, 0%); z-index: 2;opacity: 1; }
+          45.828% { -ms-transform: scale(1.004) translate(0%, 0%); z-index: 2;opacity: 1; }
+          62.496% { -ms-transform: scale(1.004) translate(0%, 0%); z-index: 2; opacity: 1;}
+          66.668% {-ms-transform:scale(1.004) translate(-101%,0%); z-index: 2;opacity: 1;}
+          100% {-ms-transform:scale(1.004) translate(-101%,0%); z-index: 2;opacity: 1;}
+        }
+        @-o-keyframes slideleft1 {
+          0% { -o-transform: scale(1.004) translate(201%, 0%); z-index: 2;opacity: 1; }
+          4.16666% { -o-transform: scale(1.004) translate(0%, 0%); z-index: 2;opacity: 1;}
+          20.828% { -o-transform: scale(1.004) translate(0%, 0%); z-index: 2;opacity: 1;}
+          25% {-o-transform:scale(1.004) translate(-101%,0%); z-index: 2;opacity: 1;}
+          25.004% {visibility:hidden; -o-transform:scale(1.004) translate(-101%,0%); z-index: 2;opacity: 1;}
+          25.008% {visibility:hidden; -o-transform:scale(1.004) translate(201%,0%); z-index: 2;opacity: 1;}
+          41.664% {visibility:visible; -o-transform: scale(1.004) translate(201%, 0%); z-index: 2;opacity: 1; }
+          45.828% { -o-transform: scale(1.004) translate(0%, 0%); z-index: 2;opacity: 1; }
+          62.496% { -o-transform: scale(1.004) translate(0%, 0%); z-index: 2; opacity: 1;}
+          66.668% {-o-transform:scale(1.004) translate(-101%,0%); z-index: 2;opacity: 1;}
+          100% {-o-transform:scale(1.004) translate(-101%,0%); z-index: 2;opacity: 1;}
+        }
+        @keyframes slideleft1 {
+          0% { transform: scale(1.004) translate(201%, 0%); z-index: 2;opacity: 1; }
+          4.16666% { transform: scale(1.004) translate(0%, 0%); z-index: 2;opacity: 1;}
+          20.828% { transform: scale(1.004) translate(0%, 0%); z-index: 2;opacity: 1;}
+          25% {transform:scale(1.004) translate(-101%,0%); z-index: 2;opacity: 1;}
+          25.004% {visibility:hidden; transform:scale(1.004) translate(-101%,0%); z-index: 2;opacity: 1;}
+          25.008% {visibility:hidden; transform:scale(1.004) translate(201%,0%); z-index: 2;opacity: 1;}
+          41.664% {visibility:visible; transform: scale(1.004) translate(201%, 0%); z-index: 2;opacity: 1; }
+          45.828% { transform: scale(1.004) translate(0%, 0%); z-index: 2;opacity: 1; }
+          62.496% { transform: scale(1.004) translate(0%, 0%); z-index: 2; opacity: 1;}
+          66.668% {transform:scale(1.004) translate(-101%,0%); z-index: 2;opacity: 1;}
+          100% {transform:scale(1.004) translate(-101%,0%); z-index: 2;opacity: 1;}
+        }
+
+        :host > #play_toggle:checked ~ ul > li.num0,
+        :host > #play_toggle:checked ~ ul > li.num0 {
+        	-webkit-animation: slideleft2 24s ease-in-out 0s infinite;
+        	-moz-animation: slideleft2 24s ease-in-out 0s infinite;
+        	-ms-animation: slideleft2 24s ease-in-out 0s infinite;
+        	-o-animation: slideleft2 24s ease-in-out 0s infinite;
+        	animation: slideleft2 24s ease-in-out 0s infinite;
+
+        }
+        :host > #play_toggle:checked ~ ul > li.num1,
+        :host > #pause_toggle:checked ~ ul > li.num1 {
+          -webkit-animation: slideleft1 24s ease-in-out 0s infinite;
+        	-moz-animation: slideleft1 24s ease-in-out 0s infinite;
+        	-ms-animation: slideleft1 24s ease-in-out 0s infinite;
+        	-o-animation: slideleft1 24s ease-in-out 0s infinite;
+        	animation: slideleft1 24s ease-in-out 0s infinite;
+        }
+        .aspect_fill_26_55{
+          width: 100%;
+          visibility: hidden;
+          margin-bottom:24.55%;
+        }
+        .action_toggle{}
+        #play_toggle{
+          display:none;
+          visibility:hidden;
+          height:0px;
+          width:0px;
+        }
+/****************************************************************************************************/
+    </style>
+    <input class="action_toggle" id="play_toggle" type="radio" checked >
+    <ul><!--<div class="aspect_fill_26_55" style=""></div>-->
+      <li class="num0 img">
+        <img src="../../images/equipslider/lawnequipsized.gif"
+             alt="Lawn Equipment"
+             title="Lawn Equipment" />
+      </li>
+      <li class="num1 img">
+        <img src="../../images/equipslider/snowequipsized.gif"
+             alt="Snow Equipment"
+             title="Snow Equipment"/>
+      </li>
+    </ul>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'cc-title-bar',
+
+      properties: {
+        foo: {
+          type: String,
+          value: 'cc-title-bar',
+          notify: true
+        }
+      },
+      created: function(){},
+      ready: function(){
+        this.classList.add('animation_container');
+      },
+      attached: function(){},
+      detached: function(){}
+    });
+  })();
+  </script>
+</dom-module>
