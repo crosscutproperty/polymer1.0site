@@ -1,0 +1,43 @@
+<br>
+<h3>Current Building</h3>
+<select class="form-control" ng-model="apartmentCtrl.currentBuilding"
+        ng-disabled="apartmentCtrl.buildings.length == 0"
+        ng-options="building.$id as building.buildingName for building in apartmentCtrl.buildings">
+  <option value="">Select a building</option>
+</select>
+
+<div ng-if="apartmentCtrl.currentBuilding">
+  <h3>Apartments</h3>
+  <table class="table edit">
+    <thead>
+    <tr>
+      <th>Number</th>
+      <th>Name</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr apartment apartment-ref="{{apartment.$id}}" ng-repeat="(id, apartment) in apartmentCtrl.apartments">
+      <td><input type="text" ng-model="myApartment.apartmentNumber" ng-blur="updateItem()"/></td>
+      <td><input type="text" ng-model="myApartment.apartmentName" ng-blur="updateItem()"/></td>
+      <td>
+        <a href="#/apartments" ng-click="removeItem()" class="navbar-link">Remove</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="well" ng-if="apartmentCtrl.currentBuilding">
+  <h4>Add Apartment</h4>
+
+  <form class="form-inline" role="form" novalidate ng-submit="apartmentCtrl.insertAndAddReferenceToBuilding()">
+    <div class="form-group">
+      <input type="text" class="form-control" ng-model="apartmentCtrl.apartment.apartmentNumber" placeholder="Number">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" ng-model="apartmentCtrl.apartment.apartmentName" placeholder="Name">
+    </div>
+    <button type="submit" class="btn btn-default">Add</button>
+  </form>
+</div>

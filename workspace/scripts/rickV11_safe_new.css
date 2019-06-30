@@ -1,0 +1,937 @@
+/*Default Base Styles*/
+html {
+	height:100%;
+	font-size:32px;
+}
+body {
+
+        display:block;
+        //position:relative;
+        //top:-1.5rem;
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Open Sans', sans-serif;
+	background-color: #000;
+}
+.weatherwarningsmn{
+        display:block;
+        position:relative;
+        top:1.2rem;
+        min-height:.25rem;
+        background-color:rgba(227, 227, 227, .2);
+        border-top: solid 1px rgba(227, 227, 227, .2);
+}
+
+/*Default Custom Elements*/
+.logobreak{
+	/***********************************************
+	Logobreak houses: Company Brand, logo, Main Menu
+	************************************************/
+	
+	display:block;
+	position:relative;
+    margin:0rem;
+    padding:0rem;
+        //top:-2em;
+	font-size: 0.75rem;
+	font-weight: 600;
+        background-color:transparent;
+        z-index:700;
+	//animation: 900ms cubic-bezier(0.445, 0.05, 0.55, 0.95) 0s infinite alternate move_eye;
+	clear:both;
+}
+nav * {
+        text-align:left;
+}
+
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+.logobreak > div.unbrkbles{
+    display:block;
+    position:relative;
+    //float:left;
+    background-color:transparent;
+    min-width:100%;
+    max-width:100%;carousel-inner
+    width:100%;
+    margin:0rem;
+    padding:0rem;
+    clear:both;
+}
+.logobreak h2{
+	display:block;
+	//position:relative;
+	font: 1.25em 'Arizonia', Helvetica, sans-serif;
+        font-weight: 400;
+	color: #fff;//rgba(100, 256, 100, .6);
+	text-shadow: 1px 1px 2px rgba(227, 10, 227, 1);
+}
+nav:before{
+        content: '';
+        display:block;
+        position:absolute;
+        top:44%;
+        left:0rem;
+        width:100%;
+        //height:1rem;
+        border-bottom: solid 2px rgba(227, 227, 227, .2);
+
+        //background-color: #fff;
+}
+
+nav:after{
+        content: '';
+        display:block;
+        position:absolute;
+        bottom:47%;
+        left:0rem;
+        width:100%;
+        //height:1rem;
+        border-bottom: solid 2px rgba(227, 227, 227, .2);
+
+        //background-color: #fff;
+}
+
+.new_div3{
+//max-height: 2.25rem;
+//min-height: 2.25rem;
+margin-top:.025rem;
+padding:0px;
+    //padding-top: .25rem;
+    //padding-bottom: .25rem;
+    //text-align: center;
+//overflow: visible !important;
+    font-size: 0.75rem;
+    //text-transform: uppercase;
+    font-weight: 600;
+    animation: 900ms cubic-bezier(0.445, 0.05, 0.55, 0.95) 0s infinite alternate move_eye;
+    position: relative;
+//border-top: solid 1px green;
+//border-bottom: solid 1px green;
+border-top: solid 1px rgba(227, 227, 227, .2)
+}
+
+.carousel-inner{
+        //Get rid of this as soon as you can and impliment a good CSS slider
+        width:100% !important;
+        height:320px !important;
+        max-height:320px !important;
+        border:solid red 2px;
+}
+
+.carousel-inner > div{
+        width:100% !important;
+        border:solid blue 2px !important;
+}
+
+.carousel-inner > div > img{
+        width:100% !important;
+        height:auto !important;
+        border:solid white 2px !important;
+}
+#mntext{
+        position:absolute;
+        top:40% !important;
+        left:10% !important;
+        width:50% !important;
+        height:50% !important;
+        //border:solid blue 1px;
+        //text-align: center;
+        color:#e3e3e3;
+        	text-shadow: 1px 1px 2px #000;
+        //color:#4c4c4c;
+
+}
+.main-wrapper{
+display:block;
+border:solid red 1px;
+width:100%;
+test-align: left;
+min-width:100%;
+margin:none;
+padding:none;
+clear:both;
+//z-index:500;
+}
+.root-guide{
+        display:block;
+        margin:none;
+        padding:none;
+        min-width:100%;
+        //border:solid red 2px;
+}
+.clearfix{
+clear:both;
+}
+#slogan {
+        display:block;
+        position:absolute;
+        //top:30%;        
+        //top:19.5%;
+        bottom:-32%;
+        //left:40%;        
+                //left:53.25%;
+        left:35.5%;
+        //width:100%;
+        //height:100%;
+        //min-width:100%;
+        //border:solid red 10px;
+        min-height:6rem;
+        //max-width:15%;
+        //min-width:3rem; 
+        background:transparent;
+        background-color: rgba(0, 0, 0, .5) !important;
+        border-radius: 30%;
+        z-index:800;
+
+}
+#slogan img{
+        display:block;
+        position:relative; 
+        //margin:auto;
+        //border:solid blue 4px;
+}
+
+div.full-overlay{
+        display:block;
+        position:absolute;
+        top:.1rem;
+        left:0rem;
+        width:100%;carousel-inner
+        height:100%;
+        z-index:10;
+        background:transparent;
+        background-color: rgba(0, 0, 0, .3) !important;
+
+}
+/****************************************
+Though requested to be large these images will be placed in a slider
+that is slightly smaller and you can see many images at one time.
+***************************************/
+p.speech
+{
+	position: absolute;
+        top:1rem;
+        right:1rem;
+	width: 8rem;
+	height: 4rem;
+	text-align: center;
+	line-height: 100px;
+	background-color: #fff;
+	border: 8px solid #666;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+	-webkit-box-shadow: 2px 2px 4px #888;
+	-moz-box-shadow: 2px 2px 4px #888;
+	box-shadow: 2px 2px 4px #888;
+        //z-index:10;
+}
+div.slide-wrap{
+      display:block;
+     position:relative;
+        max-height:10rem;
+//float:left;
+//text-align:center;
+//border:solid blue 2px;
+        //z-index:-1;
+clear:both;
+        /*top:.1rem;
+        left:0rem;
+        z-index:-1;
+        //width:100%;
+        //height:fit-content;
+        //max-width:auto;
+        border:solid blue 1px;
+        padding:0rem;
+margin:0rem;*/
+        
+}
+#equip-slider {
+   background: #000;
+   border: 5px solid #eaeaea;carousel-inner
+   box-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+   position:relative;
+   height: 10rem;
+        max-height:10rem;
+   //width: 21.25rem;
+   width:100%;
+   margin:auto;
+   padding:0rem;
+   //border:solid red 2px;
+
+   //text-align:center;
+   //overflow: hidden;
+   //position: relative;
+   
+}
+#myCarousel{
+        margin:none !important;
+        width:100% !important;
+        min-width:100% !important;
+        padding:none;
+        border:solid lightblue 2px;      
+}
+#myCarousel h2{
+        display:block;
+        width:100%;
+        position:absolute;
+        top:0rem;
+        left:0rem;
+        z-index:2;
+	font: 1.25rem 'Arizonia', Helvetica, sans-serif;
+        font-weight: 100;
+	color: #4c4c4c;//#fff;//rgba(100, 256, 100, .6);
+	text-shadow: 1px 1px 3px rgba(255, 255, 255, 1);
+        background-color: rgba(255, 255, 255, .6);
+}
+/* HIDE ALL OUTSIDE OF THE SLIDER */
+
+#mask {
+   overflow: hidden;
+   height: 10rem;
+   max-height: 320px;
+clear:both;
+}
+#equip-slider ul {
+   display:block;
+   width:100%;
+    // border: solid red 2px;
+   margin: auto;
+   padding: 0;
+   position: relative;
+}
+#equip-slider li {
+   //width: auto;  /* Width Image */
+   width:100%;
+   height: 320px; /* Height Image */
+   position: absolute;
+   top: -325px; /* Original Position - Outside of the Slider */
+   list-style: none;
+}
+#equip-slider li img {
+        display:block;
+        margin:auto;
+        max-height:320px;
+        width:auto;
+}
+
+#equip-slider li.firstanimation {
+   animation: cycle 25s linear infinite;
+}
+
+#equip-slider li.secondanimation {
+   animation: cycletwo 25s linear infinite;
+}
+
+#equip-slider li.thirdanimation {
+   animation: cyclethree 25s linear infinite;
+}
+
+#equip-slider li.fourthanimation {
+   animation: cyclefour 25s linear infinite;
+}
+
+#equip-slider li.fifthanimation {
+   animation: cyclefive 25s linear infinite;
+}
+
+@keyframes cycle {
+   0%  { top: 0px; } /* When you start the slide, the first image is already visible */
+   4%  { top: 0px; } /* Original Position */
+   16% { top: 0px; opacity:1; z-index:0; } /* From 4% to 16 % = for 3 seconds the image is visible */
+   20% { top: 325px; opacity: 0; z-index: 0; } /* From 16% to 20% = for 1 second exit image */
+   21% { top: -325px; opacity: 0; z-index: -1; display:none;} /* Return to Original Position */
+   92% { top: -325px; opacity: 0; z-index: 0; }
+   96% { top: -325px; opacity: 0; } /* From 96% to 100% = for 1 second enter image*/
+   100%{ top: 0px; opacity: 1; }
+}
+
+@keyframes cycletwo {
+   0%  { top: -325px; opacity: 0; } /* Original Position */
+   16% { top: -325px; opacity: 0; }/* Starts moving after 16% to this position */
+   20% { top: 0px; opacity: 1; }
+   24% { top: 0px; opacity: 1; }  /* From 20% to 24% = for 1 second enter image*/
+   36% { top: 0px; opacity: 1; z-index: 0; }   /* From 24% to 36 % = for 3 seconds the image is visible */
+   40% { top: 325px; opacity: 0; z-index: 0; } /* From 36% to 40% = for 1 second exit image */
+   41% { top: -325px; opacity: 0; z-index: -1; display:none;}   /* Return to Original Position */
+   100%{ top: -325px; opacity: 0; z-index: -1; display:none;}
+}
+
+@keyframes cyclethree {
+   0%  { top: -325px; opacity: 0; }
+   36% { top: -325px; opacity: 0; }
+   40% { top: 0px; opacity: 1; }
+   44% { top: 0px; opacity: 1; }
+   56% { top: 0px; opacity: 1; }
+   60% { top: 325px; opacity: 0; z-index: 0; }
+   61% { top: -325px; opacity: 0; z-index: -1; display:none;}
+   100%{ top: -325px; opacity: 0; z-index: -1; display:none;}
+}
+
+@keyframes cyclefour {
+   0%  { top: -325px; opacity: 0; }
+   56% { top: -325px; opacity: 0; }
+   60% { top: 0px; opacity: 1; }
+   64% { top: 0px; opacity: 1; }
+   76% { top: 0px; opacity: 1; z-index: 0; }carousel-inner
+   80% { top: 325px; opacity: 0; z-index: 0; }
+   81% { top: -325px; opacity: 0; z-index: -1; display:none;}
+   100%{ top: -325px; opacity: 0; z-index: -1; display:none;}
+}
+
+@keyframes cyclefive {
+   0%  { top: -325px; opacity: 0; }
+   76% { top: -325px; opacity: 0; }
+   80% { top: 0px; opacity: 1; }
+   84% { top: 0px; opacity: 1; }
+   96% { top: 0px; opacity: 1; z-index: 0; display:none;}
+   100%{ top: 325px; opacity: 0; z-index: 0; display:none;}
+}
+
+
+header {
+  display:block;
+  z-index:700;
+}
+
+header.dark {
+  background-color:transparent;
+}
+
+header.light {
+  background-color: rgba(40, 87, 40, 1)
+}
+
+
+/* Navigation Styles */
+
+nav {
+    display:block;
+    top:.97rem;
+    background-color:transparent;
+    margin:auto;
+    //text-align:center;
+    //z-index:700;
+}
+
+header.dark nav {
+  background-color: transparent;
+}
+
+header.light nav {
+  background-color: transparent;
+}
+
+ul.main-nav {
+    list-style-type: none;
+    padding: 0px;
+    font-size: 0px;
+    margin: 0 auto;
+    background-color: transparent;
+}
+
+ul.main-nav > li {
+  display: inline-block;
+  //border: solid red 2px !important;
+  margin:0;
+  padding: 0;
+  background-color: transparent;
+}
+
+ul.main-nav > li > a {
+  display: block;
+  padding: 20px 30px;
+  position: relative;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  box-sizing: border-box;
+  background-color: transparent;
+}
+
+ul.main-nav > li:hover {
+  display: inline-block;
+  min-width: 18px;
+  margin:0;
+  padding: 0;
+  background-color: transparent;
+}
+
+ul.main-nav > li:hover > a {
+  color: #333;
+  font-weight: 400;
+  background-color: transparent;
+}
+
+ul.main-nav > li ul.sub-menu-lists {
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+}
+
+ul.main-nav > li ul.sub-menu-lists > li {
+  padding: 2px 0;
+}
+
+ul.main-nav > li ul.sub-menu-lists > li > a {
+  font-size: 437rem;
+}
+
+blockquote { 
+  max-width: 100%; 
+  margin:0px;
+  padding:.25rem;
+  padding-left:0px;
+  text-align:left;
+  font-size: .437rem; 
+  color:white;
+  border:solid green 1px;
+  white-space: pre-wrap;       /* css-3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+.txtwrap{
+ white-space: pre-wrap   !important;    /* css-3 */
+ white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+ white-space: -pre-wrap !important;      /* Opera 4-6 */
+ white-space: -o-pre-wrap !important;    /* Opera 7 */
+ word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
+}
+
+blockquote h2 { padding-right: 40px; margin: 0px; }
+header.dark blockquote a {color: orange; text-decoration: underline;}
+header.light blockquote a {text-decoration: underline;}
+
+
+.ic {carousel-inner
+  position: fixed;
+  cursor: pointer;
+  display: inline-block;
+  right: 25px;
+  width: 32px;
+  height: 24px;
+  text-align: center;
+  top: 0px;
+  outline: none;
+}
+
+.ic.close {
+  opacity: 0;
+  font-size: 0px;
+  font-weight: 300;
+  color: #fff;
+  top: 8px;
+  height: 40px;
+  display: block;
+  outline: none;
+}
+
+
+/* Menu Icons for Devices*/
+
+.ic.menu {
+  top: 25px;
+  z-index: 20;
+}
+
+.ic.menu .line {
+  height: 4px;
+  width: 100%;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.ic.menu .line-last-child {
+  margin-bottom: 0px;
+}
+
+.sub-menu-head {
+  margin: 10px 0;
+}
+  .sub-menu-head {
+    color: orange;
+  }
+
+.banners-area {
+  margin-top: 20px;
+  padding-top: 15px;
+}
+@media only screen and (max-width:54rem){
+
+        #slogan{
+                max-width:6.1rem !important;
+                height:auto;
+                
+        }
+        #slogan #mnoutline{
+                max-width:6rem !important;
+        }
+        #slogan #mntext{
+
+                font-size:.8rem;
+
+        }
+
+} 
+@media only screen and (min-width: 54rem) and (max-width:72rem){
+
+        #slogan{
+                max-width:6.1rem !important;
+                height:auto;
+                
+        }
+        #slogan #mnoutline{
+                max-width:6rem !important;
+        }
+        #slogan #mntext{
+
+                font-size:.8rem;
+
+        }
+
+} 
+@media only screen and (min-width: 72rem) {
+        body {
+        	background-color:rgba(40, 87, 40, 1);
+        }
+       /* #slogan{
+                max-width:6.1rem !important;
+                height:auto;
+                
+        }
+        #slogan #mnoutline{
+                max-width:6rem !important;
+        }
+        #slogan #mntext{
+
+                font-size:.8rem;
+
+        }*/
+
+        /*#slogan{
+                max-width:8.1rem !important;
+                height:auto;
+                //border:solid red 1px;
+                
+        }
+        #slogan #mnoutline{
+                max-width:8rem !important;
+        }
+        #slogan #mntext{
+                font-size:1.1rem;
+        }*/
+
+        #slogan{
+                max-width:6.1rem !important;
+                height:auto;carousel-inner
+                
+        }
+        #slogan #mnoutline{
+                max-width:6rem !important;
+        }
+        #slogan #mntext{
+
+                font-size:.8rem;
+
+        }
+
+
+  .ic.menu { display: none; }
+  
+  /* Main Menu for Desktop Devices  */
+  ul.main-nav { 
+          background-color:transparent;
+          display:inline-block;
+          margin:0;
+          padding:0;
+  }
+  ul.main-nav  > li{
+          background-color:transparent;
+          display:inline-block;
+          margin:0;
+          padding:0;
+  }
+  .sub-menu-block { padding: 15px; }
+  
+  /* Sub Menu */
+  ul.main-nav > li > div.sub-menu-block { 
+          display: block;
+          visibility: hidden;
+          position: absolute;
+          top:1.97rem;
+          left:0;
+          min-width:100%;
+          max-width:100%;
+          width:100%;
+          margin: 0px;
+          color: #333;
+          box-sizing: border-box;
+          z-index : 3;
+          font-size: 16px;
+          opacity: 0;
+    
+          /*CSS animation applied for sub menu : Slide from Top */
+          -webkit-transition: all 0.4s ease 0s;
+          -o-transition: all 0.4s ease 0s;
+          transition: all 0.4s ease 0s;
+          -webkit-transform: rotateX(90deg);
+          -moz-transform: rotateX(90deg);
+          -ms-transform: rotateX(90deg);
+          transform: rotateX(90deg);
+          -webkit-transform-origin: top center;
+          -ms-transform-origin: top center;
+          transform-origin: top center; 
+  
+  }
+  
+  ul.main-nav > li:hover > div.sub-menu-block { 
+          background-color: transparent; 
+          visibility: visible;
+          opacity: 1;
+          -webkit-transform: rotateX(0deg);
+          -moz-transform: rotateX(0deg);
+          -ms-transform: rotateX(0deg);
+          transform: rotateX(0deg);
+  }
+  ul.main-nav > li:hover > div.sub-menu-block > div.row{
+    background-color: rgba(0, 0, 0, .8);
+  }
+  ul.main-nav > li > div.sub-menu-block > * {
+    -webkit-transition-property: opacity;
+    -moz-transition-property: opacity;
+    -o-transition-property: opacity;
+    transition-property: opacity;
+   	-webkit-transition-duration: 0.4s;
+	  -moz-transition-duration: 0.4s;
+	  -o-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    opacity: 0;
+  }
+  ul.main-nav > li:hover > div.sub-menu-block > * {
+    opacity: 1;
+  }
+  
+  ul.main-nav > li ul.sub-menu-lists > li a {
+    color: #eee;
+    font-size: 14px;
+  }
+  .sub-menu-head {
+    font-size: 16px;
+  }
+  /* List Separator: Outer Border */
+  header.dark ul.main-nav > li > a { background-color:transparent;border-right: 1px solid #bbb; }
+  header.light ul.main-nav > li > a { background-color:transparent; border-right: 1px solid #666; }
+  
+  /* List Separator: Inner Border */
+  ul.main-nav > li > a:after {
+    content: '';
+    width: 1px;
+    height: 62px;
+    position: absolute;
+    right:0px;
+    top: 0px;
+    z-index : 2;
+  }
+  header.dark ul.main-nav > li > a:after { background-color: #777; }
+  header.light ul.main-nav > li > a:after { background-color: #999; }
+  
+  /* Drop Down/Up Arrow for Mega Menu */
+  ul.main-nav > li > a.mega-menu > span { background-color:transparent; display: block; vertical-align: middle; }
+  ul.main-nav > li > a.mega-menu > span:after {
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #fff;
+    content: '';
+    background-color: transparent;
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+
+  ul.main-nav > li:hover > a.mega-menu span:after {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 0px solid transparent;
+    border-bottom: 5px solid #666;
+    background-color:transparent;
+  }
+  .banners-area { border-top: 1px solid #ccc; }
+
+}
+/*@media only screen and (max-width: 72em){
+  body {
+    background-color:rgba(0,0,0,1) !important;
+    }
+  .ic.menu {
+    display: none !important;
+  }
+}*/
+
+@media only screen and (max-width: 72rem){
+
+    body {
+        	background-color:rgba(40, 87, 40, 1) !important;
+    }
+
+
+  .sub-menu-head {
+    color: orange;
+  }
+  .ic.menu {
+    display: block;
+  }
+  header.dark .ic.menu .line {
+    background-color: #fff;
+  }
+  header.light .ic.menu .line {
+    background-color: #000;
+  }
+  .ic.menu .line {
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transform-origin: center center;
+    -ms-transform-origin: center center;
+    transform-origin: center center;
+  }
+  .ic.menu:focus .line {
+    background-color: #fff !important;
+  }
+  .ic.menu:focus .line:nth-child(1) {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  .ic.menu:focus .line:nth-child(2) {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    margin-top: -10px;
+  }
+  .ic.menu:focus .line:nth-child(3) {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+  .ic.menu:focus {
+    outline: none;
+  }
+  .ic.menu:focus ~ .ic.close {
+    opacity: 1;
+    z-index: 21;
+    outline: none;
+  }
+  /*
+  
+  .ic.menu:focus ~ .ic.close { opacity: 1.0; z-index : 21;  }
+  .ic.close:focus { opacity: 0; }
+  */
+  .ic.menu:focus {
+    opacity: 1;
+  }
+  nav {
+  background-color: transparent;
+  }
+  /* Main Menu for Handheld Devices  */
+  ul.main-nav {
+    z-index: 2;
+    padding: 50px 0;
+    position: fixed;carousel-inner
+    right: 0px;
+    top: 0px;
+    width: 0px;
+    background-color: rgba(0, 0, 0, 1);
+    height: 100%;
+    overflow: auto;
+    /*CSS animation applied : Slide from Right*/
+    -webkit-transition-property: background, width;
+    -moz-transition-property: background, width;
+    -o-transition-property: background, width;
+    transition-property: background, width;
+    -webkit-transition-duration: 0.6s;
+    -moz-transition-duration: 0.6s;
+    -o-transition-duration: 0.6s;
+    transition-duration: 0.6s;
+  }
+  .ic.menu:focus ~ .main-nav {
+    width: 100%; //300px;
+    background-color: rgba(0, 0, 0, .8);
+  }
+  ul.main-nav > * {
+min-width:
+    -webkit-transition-property: opacity;
+    -moz-transition-property: opacity;
+    -o-transition-property: opacity;
+    transition-property: opacity;
+    -webkit-transition-duration: 0.4s;
+    -moz-transition-duration: 0.4s;
+    -o-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    opacity: 0;
+  }
+  .ic.menu:focus ~ .main-nav > * {
+    opacity: 1;
+  }
+  ul.main-nav > li > a:after {
+    display: none;
+  }
+  ul.main-nav > li:first-child {
+    border-radius: 0px;
+  }
+  ul.main-nav > li {
+    display: block;
+    border-bottom: 1px solid green;//#444;
+  }
+  ul.main-nav > li > a {
+    font-weight: 600;
+  }
+  ul.main-nav > li ul.sub-menu-lists > li a {
+    color: #eee;
+    font-size: 14px;
+  }
+  .sub-menu-head {
+    font-size: 16px;
+  }
+  ul.main-nav > li:hover {
+    background-color: transparent;
+  }
+  ul.main-nav > li:hover > a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .ic.menu:focus ~ ul.main-nav > li > div.sub-menu-block {
+    border-left: 0px solid #ccc;
+    border-right: 0px solid #ccc;
+    border-bottom: 0px solid #ccc;
+    position: relative;
+    visibility: visible;
+    opacity: 1.0;
+  }
+  .sub-menu-block {
+    padding: 0 30px;
+  }
+  .banners-area {
+    padding-bottom: 0px;
+  }
+  .banners-area div {
+    margin-bottom: 15px;
+  }
+  .banners-area {
+    border-top: 1px solid #444;
+  }
+}
+

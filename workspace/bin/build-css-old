@@ -1,0 +1,1 @@
+screen -S watch-css-screen -d -m nodemon -e scss -x "npm run build-css"

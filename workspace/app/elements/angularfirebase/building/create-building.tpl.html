@@ -1,0 +1,18 @@
+<div class="panel-heading">
+  <h3 class="panel-title">Create new building</h3>
+</div>
+<div class="panel-body">
+  <form>
+    <div class="form-group">
+      <label for="number">Building Number</label>
+      <input type="number" class="form-control" id="number"
+             ng-model="building.buildingNumber" placeholder="Enter building number">
+    </div>
+    <div class="form-group">
+      <label for="name">Building Name</label>
+      <input type="text" class="form-control" id="name"
+             ng-model="building.buildingName" placeholder="Enter building name">
+    </div>
+    <button type="submit" class="btn btn-primary" ng-click="insert()">Submit</button>
+  </form>
+</div>

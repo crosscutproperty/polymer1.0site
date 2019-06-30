@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+	<script src="https://cdn.firebase.com/js/simple-login/1.6.4/firebase-simple-login.js"></script>
+  </head>
+  <body>
+    <div id='messagesDiv'></div>
+    <input type='text' id='nameInput' placeholder='Name'>
+    <input type='text' id='messageInput' placeholder='Message'>
+	<a href="#" onclick="logout()">Logout</a>
+<a href="javascript:login('facebook');">fblogin</a>
+<a href="javascript:login('google');">googlelogin</a>
+<a href="javascript:addSomeData();">addData</a>
+<a href="javascript:saveToChild();">saveToChild</a>
+<a href="javascript:pushSomeData();">pushSomeData</a>
+<a href="javascript:pushShortHand();">pushShortHand</a>
+<a href="javascript:addCurrentUser(function(a){console.log(a);});">addCurrentUser</a>
+<a href="javascript:logUser();">logUser</a>
+    <script>
+  /*#######################################################
+  Get references from the firebase factory
+  #########################################*/
+  var ref = new Firebase("https://crosscut.firebaseio.com");
+  var refUsers = ref.child("users");
+  var refClients = ref.child("clients");
+  var refContacts = ref.child("contacts");
+  var refProperties = ref.child("properties");
+  var refPriceRequests = ref.child("pricerequests");
+  /*#######################################################
+  Keep updated on authentication changes
+  #########################################*/
+  function authDataCallback(authData) {
+    if (authData) {
+      console.log("User " + authData.uid + " is logged in with " + authData.provider);
+    } else {
+      console.log("User is logged out");
+    }
+  }ref.onAuth(authDataCallback);
+  /*#########################################################
+  Some helper methods
+  ###################################*/
+  function login(provider){
+    ref.authWithOAuthPopup(provider, function(error, authData) {
+      if (error) {
+        console.log("Login Failed!", error);
+      } else {
+        console.log("Authenticated successfully with payload:", authData);
+      }
+    });
+  }
+  function logout(){
+    ref.unauth();
+  }
+
+  /*########################################################
+  This is what I am using to create my json objects
+  NOTE: If you send json to firebase via the functionality 
+  supplied it will create a single node with the quotes escaped
+  -- We will not be using json, a regular object works my
+  empty object constructor and a way to add properties is here.
+  #########################################*/
+  json = window.JSON;
+  function obj(){}
+  function addKeyVal(key, val, obj){
+      //requires that an object is passed in.
+      obj[key] = val;
+  }
+ 
+function logUser(){currentUserIsReady(function(val){console.log(val);});}
+//This will eventually be part of a generator function to process the whole customer
+  function currentUserIsReady(cb){ //reference would need to be passed in if not global
+        var authData = ref.getAuth();
+        var userId = authData.uid;
+        var inScope = "inscope";
+        var refUserId = ref.child('users/'+userId+'/idValue');
+        refUserId.once('value', function (dataSnapshot) {
+          if(dataSnapshot.exists()){
+                    console.log('userId/idValue exists');
+                    console.log('this is userIdValue.val() '+dataSnapshot.val());
+                    cb('custom exists');
+          }else{                
+                    console.log('ELSE userId/idValue does not exists- would expect this only if we dont error');
+                    refLoggedUser = refUsers.child(userId);
+                    var userObj = new obj();
+                    addKeyVal('idValue', userId, userObj);
+                    addKeyVal('contactId', null, userObj);
+                    addKeyVal('permGroup', 'user', userObj);
+                    refLoggedUser.update(userObj,function(err){console.log('useridchilds '+err);});
+                    cb('logged from callback after adding user');
+          }
+
+     <!doctype html>
+<html>
+  <head>
+    <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+	<script src="https://cdn.firebase.com/js/simple-login/1.6.4/firebase-simple-login.js"></script>
+  </head>
+  <body>
+    <div id='messagesDiv'></div>
+    <input type='text' id='nameInput' placeholder='Name'>
+    <input type='text' id='messageInput' placeholder='Message'>
+	<a href="#" onclick="logout()">Logout</a>
+<a href="javascript:login('facebook');">fblogin</a>
+<a href="javascript:login('google');">googlelogin</a>
+<a href="javascript:addSomeData();">addData</a>
+<a href="javascript:saveToChild();">saveToChild</a>
+<a href="javascript:pushSomeData();">pushSomeData</a>
+<a href="javascript:pushShortHand();">pushShortHand</a>
+<a href="javascript:addCurrentUser(function(a){console.log(a);});">addCurrentUser</a>
+<a href="javascript:logUser();">logUser</a>
+    <script>
+  /*#######################################################
+  Get references from the firebase factory
+  #########################################*/
+  var ref = new Firebase("https://crosscut.firebaseio.com");
+  var refUsers = ref.child("users");
+  var refClients = ref.child("clients");
+  var refContacts = ref.child("contacts");
+  var refProperties = ref.child("properties");
+  var refPriceRequests = ref.child("pricerequests");
+  /*#######################################################
+  Keep updated on authentication changes
+  #########################################*/
+  function authDataCallback(authData) {
+    if (authData) {
+      console.log("User " + authData.uid + " is logged in with " + authData.provider);
+    } else {
+      console.log("User is logged out");
+    }
+  }ref.onAuth(authDataCallback);
+  /*#########################################################
+  Some helper methods
+  ###################################*/
+  function login(provider){
+    ref.authWithOAuthPopup(provider, function(error, authData) {
+      if (error) {
+        console.log("Login Failed!", error);
+      } else {
+        console.log("Authenticated successfully with payload:", authData);
+      }
+    });
+  }
+  function logout(){
+    ref.unauth();
+  }
+
+  /*########################################################
+  This is what I am using to create my json objects
+  NOTE: If you send json to firebase via the functionality 
+  supplied it will create a single node with the quotes escaped
+  -- We will not be using json, a regular object works my
+  empty object constructor and a way to add properties is here.
+  #########################################*/
+  json = window.JSON;
+  function obj(){}
+  function addKeyVal(key, val, obj){
+      //requires that an object is passed in.
+      obj[key] = val;
+  }
+ 
+function logUser(){currentUserIsReady(function(val){console.log(val);});}
+//This will eventually be part of a generator function to process the whole customer
+  function currentUserIsReady(cb){ //reference would need to be passed in if not global
+        var authData = ref.getAuth();
+        var userId = authData.uid;
+        var inScope = "inscope";
+        var refUserId = ref.child('users/'+userId+'/idValue');
+        refUserId.once('value', function (dataSnapshot) {
+          if(dataSnapshot.exists()){
+                    console.log('userId/idValue exists');
+                    console.log('this is userIdValue.val() '+dataSnapshot.val());
+                    cb('custom exists');
+          }else{                
+                    console.log('ELSE userId/idValue does not exists- would expect this only if we dont error');
+                    refLoggedUser = refUsers.child(userId);
+                    var userObj = new obj();
+                    addKeyVal('idValue', userId, userObj);
+                    addKeyVal('contactId', null, userObj);
+                    addKeyVal('permGroup', 'user', userObj);
+                    refLoggedUser.update(userObj,function(err){console.log('useridchilds '+err);});
+                    cb('logged from callback after adding user');
+          }
+
+     
