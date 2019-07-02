@@ -1,0 +1,73 @@
+      :host ul.main-nav {
+        display:block;
+        list-style-type: none;
+        padding: 0px;
+        font-size: 0px;
+        background-color: transparent;
+        text-align:center;
+      }
+      :host ul.main-nav > li {
+        display: inline-block;
+        margin:0;
+        padding: 0;
+        background-color: transparent;
+      }
+      :host ul.main-nav > li > a {
+        display: block;
+        padding: 20px 30px;
+        position: relative;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 400;
+        box-sizing: border-box;
+        background-color: transparent;
+      }
+      :host ul.main-nav > li:hover {
+        display: inline-block;
+        min-width: 18px;
+        margin:0;
+        padding: 0;
+        background-color: transparent;
+      }
+
+      :host ul.main-nav > li:hover > a {
+        color: #333;
+        font-weight: 400;
+        background-color: transparent;
+      }
+
+      :host ul.main-nav > li ul.sub-menu-lists {
+        margin: 0px;
+        padding: 0px;
+        list-style-type: none;
+      }
+
+      :host ul.main-nav > li ul.sub-menu-lists > li {
+        padding: 2px 0;
+      }
+
+      :host ul.main-nav > li ul.sub-menu-lists > li > a {
+        font-size: 437rem;
+      }
+
+
+
+      :host blockquote { 
+        max-width: 100%; 
+        margin:0px;
+        padding:.25rem;
+        padding-left:0px;
+        text-align:left;
+        font-size: .437rem; 
+        color:white;
+        border:solid green 1px;
+        white-space: pre-wrap;       /* css-3 */
+        white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+        white-space: -pre-wrap;      /* Opera 4-6 */
+        white-space: -o-pre-wrap;    /* Opera 7 */
+        word-wrap: break-word;       /* Internet Explorer 5.5+ */
+      }
+      :host blockquote h2 { padding-right: 40px; margin: 0px; }
+      :host blockquote a {color: orange; text-decoration: underline;}
+      :host blockquote a {text-decoration: underline;} 
+

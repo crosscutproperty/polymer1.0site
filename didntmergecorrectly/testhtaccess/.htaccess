@@ -1,0 +1,54 @@
+## REWRITE DEFAULTS ###
+RewriteEngine On
+RewriteBase /
+SetEnv is_special foobar
+
+AddType application/x-httpd-php .htm
+
+#Multiple slash rule doesnt handle leading slashes
+#Forbid more than one leading slash
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/{2,} [NC]
+RewriteRule ^ - [L,F]
+
+#http://www.esecurityplanet.com/open-source-security/top-5-wordpress-vulnerabilities-and-how-to-fix-them.html
+RewriteCond %{REQUEST_METHOD} ^(HEAD|TRACE|DELETE|TRACK) [NC]
+RewriteRule ^(.*)$ - [F,L]
+RewriteCond %{QUERY_STRING} \.\.\/ [NC,OR]
+RewriteCond %{QUERY_STRING} boot\.ini [NC,OR]
+RewriteCond %{QUERY_STRING} tag\= [NC,OR]
+RewriteCond %{QUERY_STRING} ftp\:  [NC,OR]
+RewriteCond %{QUERY_STRING} http\:  [NC,OR]
+RewriteCond %{QUERY_STRING} https\:  [NC,OR]
+RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} mosConfig_[a-zA-Z_]{1,21}(=|%3D) [NC,OR]
+RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [NC,OR]
+RewriteCond %{QUERY_STRING} ^.*(\[|\]|\(|\)|<|>|ê|"|;|\?|\*|=$).* [NC,OR]
+RewriteCond %{QUERY_STRING} ^.*(&#x22;|&#x27;|&#x3C;|&#x3E;|&#x5C;|&#x7B;|&#x7C;).* [NC,OR]
+RewriteCond %{QUERY_STRING} ^.*(%24&x).* [NC,OR]
+RewriteCond %{QUERY_STRING} ^.*(%0|%A|%B|%C|%D|%E|%F|127\.0).* [NC,OR]
+RewriteCond %{QUERY_STRING} ^.*(globals|encode|localhost|loopback).* [NC,OR]
+RewriteCond %{QUERY_STRING} ^.*(request|select|insert|union|declare).* [NC]
+RewriteRule ^(.*)$ - [F,L]
+
+#Remove multiple slashes anywhere in URL
+RewriteCond %{REQUEST_URI} ^(.*)//(.*)$
+RewriteRule . %1/%2 [R,L,QSA]
+
+RewriteCond %{REQUEST_URI} ^/testhtaccess/hiddengate/(.*)$
+RewriteRule .* testhtaccess/traditional/%1 [NC,L,PT]
+
+
+#Handle external requests not destine for hiddengate
+RewriteCond %{REQUEST_URI} !^/index\.html$
+RewriteCond %{REQUEST_URI} !^/robots\.txt$
+RewriteCond %{REQUEST_URI} !^/favicon\.ico$
+RewriteCond %{REQUEST_URI} !^/cache-config\.json$
+RewriteCond %{REQUEST_URI} !^/manifest\.json$
+RewriteCond %{REQUEST_URI} !^/sw-import\.js$
+RewriteCond %{REQUEST_URI} !^/images(.*)$
+RewriteCond %{REQUEST_URI} !^/styles(.*)$
+RewriteCond %{REQUEST_URI} !^/scripts(.*)$
+RewriteCond %{REQUEST_URI} !^/elements(.*)$
+RewriteCond %{REQUEST_URI} !^/bower_components(.*)$
+RewriteCond %{REQUEST_URI} ^/testhtaccess/(.*)$
+RewriteRule .* /testhtaccess/enter.html [NC,L,PT]
