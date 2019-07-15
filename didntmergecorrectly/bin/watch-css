@@ -1,1 +1,0 @@
-screen -S watch-css-screen -d -m node-sass --watch scss --output app/styles/from_sass

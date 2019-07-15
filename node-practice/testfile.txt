@@ -1,4 +1,0 @@
-Hello from testfile
-Second line
-third line
-fourth line
