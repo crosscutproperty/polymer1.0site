@@ -5,7 +5,11 @@
     if (window.location.port === '' || window.location.port === '31999') {  // if production
       page.base(app.baseUrl.replace(/\/$/, ''));
     }
-
+    if ( window.location.pathname.split("/")[1] == "dist"){
+      console.log("baseurl:"+app.baseUrl);
+      console.log("location-path:"+window.location.pathname.split("/")[1]);
+    }
+    console.log("baseurl:"+app.baseUrl);
     function setFocus(selected){
       document.querySelector('section[data-route="' + selected + '"] .page-title').focus();
     }
