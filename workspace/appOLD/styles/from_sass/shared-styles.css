@@ -1,0 +1,236 @@
+/*##########################################*/
+:root #DEFINE_ {
+  /****************************
+    Define the module ID as it appears to avoid collision of defs on root selector.
+    If it is not a module an id on the style tag is required, use that.
+    (will be converted to lowercase and underscores replaced with hyphens)
+    **********************************************/
+  SHARED_STYLES: '{ "is_module":"true", "is_custom":"true", "dependencies_by_module_id":[], "imports_by_relative_uri":["../../bower_components/paper-styles/typography.html"], "self_package_relative_uri":"../style-module-packages/shared-mods.html", "self_module_relative_uri":"shared-styles.html", "self_raw_css_relative_uri":"../raw-css/shared-styles.css]", "self_raw_scss_relative_uri":"../raw-scss/shared-styles.scss", "compile_to_package_name":"shared-mods.html", "import_all":"true" }';
+  /****************************************
+    When compiled to package, my package builder will check if
+    the imports for that module are already added, and if not will
+    add them. The package to which the built module belongs is automatically
+    imported in the build, no need to redeclare it or the modules contained
+    within it. A package file will be created that can be referenced to
+    see if the modules you want to import are already in a package that
+    has been imported. If you would like to import everything, toggle the
+    import_all switch in this style definition.
+    ****************************************************/ }
+
+.page-title .app-menu {
+  --paper-menu-selected-item-color: { color: #fff; background: var(--light-primary-color); }; }
+
+paper-menu a > *, paper-menu paper-item > *, paper-menu paper-icon-item > * {
+  pointer-events: none; }
+
+@media (max-width: 600px) {
+  .page-title {
+    font-size: 24px !important; } }
+
+/* Application theme */
+:root {
+  --primary-text-color: var(--paper-grey-900);
+  --primary-background-color: #ffffff;
+  --secondary-text-color: #737373;
+  --disabled-text-color: #9b9b9b;
+  --divider-color: #dbdbdb;
+  --primary-color: var(--paper-indigo-500);
+  --light-primary-color: var(--paper-indigo-100);
+  --dark-primary-color: var(--paper-indigo-700);
+  --accent-color: var(--paper-pink-a200);
+  --light-accent-color: var(--paper-pink-a100);
+  --dark-accent-color: var(--paper-pink-a400);
+  --paper-toolbar-background: #285728;
+  /* Components */
+  --paper-toolbar-height: 45px;
+  /* paper-drawer-panel */
+  --drawer-menu-color: #ffffff;
+  --drawer-border-color: 1px solid #ccc;
+  --drawer-toolbar-border-color: 1px solid rgba(0, 0, 0, 0.22);
+  --js-updated-outro-bottom: 0px;
+  /* paper-menu */
+  --paper-menu-background-color: #fff;
+  --menu-link-color: #111111; }
+
+/* General styles */
+body {
+  display: block;
+  height: auto; }
+
+body:after {
+  display: block;
+  clear: both;
+  position: relative; }
+
+.space {
+  @apply (--layout-flex); }
+
+#drawerToolbar {
+  color: var(--secondary-text-color);
+  background-color: var(--drawer-menu-color);
+  border-bottom: var(--drawer-toolbar-border-color); }
+
+#drawerToolbar .menu-name {
+  @apply (--paper-font-title); }
+
+paper-scroll-header-panel {
+  height: 100%; }
+
+paper-menu {
+  --paper-menu-selected-item: "{\a     color: var(--primary-color);\a   }";
+  --paper-menu-focused-item-after: "{\a     background: var(--primary-color);\a   }"; }
+
+paper-menu iron-icon {
+  margin-right: 33px;
+  opacity: 0.54; }
+
+paper-menu a {
+  @apply (--layout-horizontal);
+  @apply (--layout-center);
+  text-decoration: none;
+  color: var(--menu-link-color);
+  font-family: 'Roboto', 'Noto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  min-height: 48px;
+  padding: 0 16px; }
+
+#mainToolbar.tall .app-name {
+  display: block;
+  min-height: 100%;
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding: 0px;
+  background-color: rgba(255, 255, 255, 0.4);
+  /* Required for main area's paper-scroll-header-panel custom condensing transformation */
+  -webkit-transform-origin: left center;
+  transform-origin: left center; }
+
+#mainToolbar .middle-container,
+#mainToolbar .bottom-container {
+  @apply (--layout-horizontal);
+  @apply (--layout-center); }
+
+#mainToolbar .middle-container {
+  height: 100%;
+  margin-left: 48px; }
+
+#mainToolbar:not(.tall) .middle-container {
+  font-size: 18px;
+  padding-bottom: 0; }
+
+#mainToolbar .bottom-container {
+  @apply (--paper-font-subhead);
+  margin-left: 48px;
+  /* Required for main area's paper-scroll-header-panel custom condensing transformation */
+  -webkit-transform-origin: left center;
+  transform-origin: left center; }
+
+#mainToolbar .cchead-txt {
+  font: 40px 'Arizonia', Helvetica, sans-serif;
+  font-weight: 100;
+  color: #4c4c4c;
+  /* Required for main area's paper-scroll-header-panel custom condensing transformation */
+  -webkit-transform-origin: left center;
+  transform-origin: left center; }
+
+#companyTitle .cc-name {
+  display: block;
+  position: static;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  width: 99%;
+  overflow-x: hidden;
+  height: auto;
+  margin-top: 10.24px;
+  margin-bottom: 10.24px;
+  font: 40px 'Arizonia', Helvetica, sans-serif;
+  font-weight: 100;
+  color: #4c4c4c;
+  background-color: rgba(255, 255, 255, 0.4);
+  /* Required for main area's paper-scroll-header-panel custom condensing transformation */ }
+
+#companyTitle .cc-name > text {
+  margin-left: 16px;
+  border: solid red; }
+
+#companyTitle .cc-name::-webkit-scrollbar {
+  display: none; }
+
+/* Height of the scroll area */
+.content {
+  height: 900px; }
+
+section[data-route="home"] paper-material {
+  @apply (--paper-font-body2); }
+
+section[data-route="home"] paper-material .subhead {
+  @apply (--paper-font-subhead); }
+
+paper-material {
+  border-radius: 2px;
+  height: 100%;
+  padding: 16px 0 16px 0;
+  width: calc(98.66% - 16px);
+  margin: 16px auto;
+  background: white; }
+
+#toast .toast-hide-button {
+  color: #eeff41;
+  margin: 10px; }
+
+section[tabindex="-1"]:focus {
+  outline: none; }
+
+/* Breakpoints */
+/* Small */
+@media (max-width: 600px) {
+  #drawer .paper-toolbar {
+    margin-left: 16px; }
+  paper-material {
+    --menu-container-display: none;
+    width: calc(97.33% - 32px);
+    padding-left: 16px;
+    padding-right: 16px; } }
+
+/* Tablet+ */
+@media (min-width: 601px) {
+  #drawer.paper-drawer-panel > [drawer] {
+    border-right: 1px solid rgba(0, 0, 0, 0.14); }
+  iron-pages {
+    padding: 48px 62px; }
+  paper-material {
+    width: calc(98% - 46px);
+    margin-bottom: 32px;
+    padding-left: 30px;
+    padding-right: 30px; } }
+
+/* Material Design Adaptive Breakpoints */
+/*
+Below you'll find CSS media queries based on the breakpoint guidance
+published by the Material Design team. You can choose to use, customise
+or remove these breakpoints based on your needs.
+http://www.google.com/design/spec/layout/adaptive-ui.html#adaptive-ui-breakpoints
+*/
+/* mobile-small */
+/* mobile-large */
+/* mobile-small-landscape */
+/* mobile-large-landscape */
+/* tablet-small-landscape */
+/* tablet-large-landscape */
+/* tablet-small */
+/* tablet-large */
+/* desktop-x-small-landscape */
+/* desktop-x-small */
+/* desktop-small-landscape */
+/* desktop-small */
+/* desktop-medium-landscape */
+/* desktop-medium */
+/* desktop-large */
+/* desktop-xlarge */

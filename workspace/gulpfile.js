@@ -44,6 +44,8 @@ var AUTOPREFIXER_BROWSERS = [
 ];
 
 var DIST = '../dist';
+var DEV = '../dev';
+var WORKSPACE = './';
 
 var dist = function(subpath) {
   return !subpath ? DIST : path.join(DIST, subpath);

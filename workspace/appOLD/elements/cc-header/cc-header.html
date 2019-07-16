@@ -1,0 +1,114 @@
+<!doctype html>
+<link rel="import" href="css-mixins/cc-header-custom-style-properties.html">
+<dom-module id="cc-header">
+  <style>
+    /*########################
+    HOST ONLY RULES
+    ##########################*/
+      :host {
+        --header-aspect-ratio:"";
+      }
+      :host cc-navigator{
+        /*display:block;
+        /position:-webkit-sticky;
+        position:sticky;*/
+        /*top:0px;/*var(--header-aspect-ratio);/*calc(100vw*var(--header-aspect-ratio));*/
+        /*border:solid blue 3px !important;*/
+      }
+
+  </style>
+  <!--<template>
+      <div id="companyname" style="">Cross Cut Property Services Inc.</div>
+      <cc-title-bar unitId="crosscutproperty/2016" id="titlebar">
+        <!--###############################################################
+        Declaration and Attention Getter / Anouncement
+        Your graphic and primary customer view items load here
+        ###################################################################
+      </cc-title-bar>
+      <div id="navplaceholder" style="min-height:60px;">
+      <cc-navigator class="" attr-for-selected="data-route" id="navigator" selected="[[route]]" style="z-index:110 !important;">
+        <ul class="main-nav">
+          <li class="top-level-link">
+            <a data-route="home" href="{{baseUrl}}home"><span>Home</span></a>
+          </li>
+          <li class="top-level-link">
+            <a data-route="takeaction" href="{{baseUrl}}takeaction"><span>Take Action</span></a>
+          </li>
+          <li class="top-level-link">
+            <a data-route="coveragearea" href="{{baseUrl}}coveragearea"><span>Coverage Area</span></a>
+          </li>
+          <li class="top-level-link">
+            <a data-route="services" href="{{baseUrl}}services"><span>Our Services</span></a>
+          </li>
+          <li class="top-level-link">
+            <a data-route="equipment" href="{{baseUrl}}equipment"><span>Equipment</span></a>
+         </li>
+       </ul>
+     </cc-navigator>
+     </div>
+   <section style="border: 1.5em solid deepskyblue">
+        <div class="clearfix" style="margin: 3em; border: 15px solid deeppink;">
+            <div class="sticky" style="box-sizing: border-box; width: 50%; border: 1em solid yellowgreen; float: right;top:50.24px;">
+                <h1>STICKY box-sizing: border-box; width: 50%; float: right;</h1>
+            </div>
+
+            <div style="float: left; width: 50%; box-sizing: border-box; border: 1em solid violet;">
+                <h2><code>div {float: left; width: 50%; box-sizing: border-box; border: 1em}</code></h2>
+
+                <p>The improvement of the producer-consumer problem has been widely studied. Sou also visualizes 64 bit architectures, but without all the unnecssary complexity. Similarly, A. Taylor et al. [32] and Erwin Schroedinger [27] constructed the first known instance of highly-available modalities [9,18,33]. While Zhou and Williams also introduced this method, we evaluated it independently and simultaneously. Further, we had our approach in mind before H. Zheng et al. published the recent well-known work on the study of Moore's Law [29,30,1]. Complexity aside, Sou develops even more accurately. Along these same lines, W. Thomas [26] developed a similar heuristic, nevertheless we disconfirmed that our solution is in Co-NP. The only other noteworthy work in this area suffers from fair assumptions about authenticated methodologies. Raj Reddy [2,11,35,23] developed a similar system, contrarily we disconfirmed that Sou is NP-complete [21].</p>
+
+                <p>The improvement of the producer-consumer problem has been widely studied. Sou also visualizes 64 bit architectures, but without all the unnecssary complexity. Similarly, A. Taylor et al. [32] and Erwin Schroedinger [27] constructed the first known instance of highly-available modalities [9,18,33]. While Zhou and Williams also introduced this method, we evaluated it independently and simultaneously. Further, we had our approach in mind before H. Zheng et al. published the recent well-known work on the study of Moore's Law [29,30,1]. Complexity aside, Sou develops even more accurately. Along these same lines, W. Thomas [26] developed a similar heuristic, nevertheless we disconfirmed that our solution is in Co-NP. The only other noteworthy work in this area suffers from fair assumptions about authenticated methodologies. Raj Reddy [2,11,35,23] developed a similar system, contrarily we disconfirmed that Sou is NP-complete [21].</p>
+            </div>
+        </div>
+    </section>
+  </template>-->
+  <script>
+    Polymer({
+      is: 'cc-header',
+      properties: {},
+      ready: function(){
+
+      },
+      attached: function(){
+      /*  var newEl = document.createElement("SCRIPT");
+        newEl.type = "text/javascript";
+        newEl.async = true;
+        newEl.onload = function(){
+          console.log("The script has dynamically loaded");
+          $(function() {
+              $('.sticky').Stickyfill();*/
+
+              /*$('body').on('contextmenu', 'p', function(event) {
+                  event.preventDefault();
+                  $(this).remove();
+              });
+
+              $('body').on('click', 'p', function() {
+                  $(this).after($(this).clone());
+              });
+
+              $('.js-top').on('mousedown', function() {
+                  window.scrollTo((document.documentElement.scrollLeft || document.body.scrollLeft), (document.documentElement.scrollTop || document.body.scrollTop)-1);
+              });
+
+              $('.js-left').on('mousedown', function() {
+                  window.scrollTo((document.documentElement.scrollLeft || document.body.scrollLeft)-1, (document.documentElement.scrollTop || document.body.scrollTop));
+              });
+
+              $('.js-right').on('mousedown', function() {
+                  window.scrollTo((document.documentElement.scrollLeft || document.body.scrollLeft)+1, (document.documentElement.scrollTop || document.body.scrollTop));
+              });
+
+              $('.js-bottom').on('mousedown', function() {
+                  window.scrollTo((document.documentElement.scrollLeft || document.body.scrollLeft), (document.documentElement.scrollTop || document.body.scrollTop)+1);
+              });*/
+      /*    });
+        }
+        newEl.src = "stickyfill/src/stickyfill.js";
+        document.getElementsByTagName("head")[0].appendChild(newEl);*/
+
+      }
+
+    });
+  </script>
+</dom-module>

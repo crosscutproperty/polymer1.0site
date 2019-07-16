@@ -1,0 +1,71 @@
+<!doctype html>
+<script src="../bower_components/page/page.js"></script>
+<script>
+  window.addEventListener('WebComponentsReady', function() {
+    if (window.location.port === '' || window.location.port === '31999') {  // if production
+      page.base(app.baseUrl.replace(/\/$/, ''));
+    }
+
+    function setFocus(selected){
+      document.querySelector('section[data-route="' + selected + '"] .page-title').focus();
+    }
+    page('/ourservices', function() {
+       app.route = 'ourservices';
+       setFocus(app.route);
+     })
+   page('/takeaction', function() {
+      app.route = 'takeaction';
+      setFocus(app.route);
+    });
+
+    page('/', function() {
+      app.route = 'home';
+      setFocus(app.route);
+    });
+
+    page('/home', function() {
+      app.route = 'home';
+      setFocus(app.route);
+    });
+
+    /*page(app.baseUrl, function() {
+      app.route = 'home';
+      setFocus(app.route);
+    });*/
+
+    page('/coveragearea', function() {
+      app.route = 'coveragearea';
+      setFocus(app.route);
+    });
+
+    page('/equipment', function(data) {
+      app.route = 'equipment';
+      app.params = data.params;
+      setFocus(app.route);
+    });
+
+    page('/underconstruction', function() {
+      app.route = 'underconstruction';
+      setFocus(app.route);
+    });
+
+    // 404
+    page('*', function() {
+      app.$.toast.text = 'Can\'t find: ' + window.location.href  + '. Redirected you to Home Page';
+      app.$.toast.show();
+      page.redirect(app.baseUrl);
+    });
+
+    page_config = (function(){
+      var hashbang = (window.location.port === '' ? false : true)
+      console.log(hashbang);
+      return {
+        hashbang:hashbang
+      }
+    })();
+
+    // add #! before urls
+    page(page_config);
+
+  });
+</script>
