@@ -12,7 +12,9 @@
       }else{
         app.baseUrl ='/';
       }
-    console.log("baseurl:"+app.baseUrl);
+      console.log("baseurl:"+app.baseUrl);
+      page.base(app.baseUrl.replace(/\/$/, ''));
+    page.base(
     function setFocus(selected){
       document.querySelector('section[data-route="' + selected + '"] .page-title').focus();
     }
