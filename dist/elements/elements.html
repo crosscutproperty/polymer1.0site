@@ -17573,7 +17573,11 @@ module.exports = Array.isArray || function (arr) {
     if (window.location.port === '' || window.location.port === '31999') {  // if production
       page.base(app.baseUrl.replace(/\/$/, ''));
     }
-
+    if ( window.location.pathname.split("/")[1] == "dist"){
+      console.log("baseurl:"+app.baseUrl);
+      console.log("location-path:"+window.location.pathname.split("/")[1]);
+    }
+    console.log("baseurl:"+app.baseUrl);
     function setFocus(selected){
       document.querySelector('section[data-route="' + selected + '"] .page-title').focus();
     }
@@ -18646,6 +18650,7 @@ overflow-x:hidden;
         :host ::content ul.main-nav > li > a {
             /*Change font size of toplevel menu link for screen size*/
           font-weight: 600;
+	  height:auto;
         }
         :host ::content ul.main-nav > li:hover {
             //Do not need unless we actually change color
@@ -19678,7 +19683,7 @@ Some useful helpers
            $('.sticky').Stickyfill();
         });
       var app = document.querySelector('#app');
-      app.baseUrl = '/polymer_crosscut_clientsite/app/index.html/';
+      //app.baseUrl = '/polymer_crosscut_clientsite/app/index.html/';
       if (window.location.port === '' || window.location.port === '443') {  // if production
         app.baseUrl = '/';
       }
