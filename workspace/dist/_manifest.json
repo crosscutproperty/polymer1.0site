@@ -1,6 +1,8 @@
 {
   "name": "Cross Cut Property Services Inc",
   "short_name": "Cross Cut Property",
+  "start_url": ".",
+  "description": "Cross Cut Property Services, Lawn and Property Care, Minneapolis Saint Paul Metroplitan Area Minnesota",
   "icons": [{
         "src": "images/touch/cc-icon-72x72.png",
         "sizes": "72x72",

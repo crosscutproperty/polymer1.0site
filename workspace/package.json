@@ -58,6 +58,7 @@
     "meow": "^3.7.0",
     "minimatch": "^3.0.3",
     "node-sass": "^4.5.0",
+    "optipng-bin": "^6.0.0",
     "polymer-cli": "^0.17.0",
     "selenium": "^2.20.0",
     "vulcanize": "^1.14.8",

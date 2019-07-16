@@ -14,6 +14,7 @@ require('es6-promise').polyfill();
 
 // Include Gulp & tools we'll use
 var gulp = require('gulp');
+var useref = require('gulp-useref');
 var $ = require('gulp-load-plugins')();
 var del = require('del');
 var runSequence = require('run-sequence');
@@ -42,7 +43,7 @@ var AUTOPREFIXER_BROWSERS = [
   'bb >= 10'
 ];
 
-var DIST = 'dist';
+var DIST = '../dist';
 
 var dist = function(subpath) {
   return !subpath ? DIST : path.join(DIST, subpath);
@@ -71,12 +72,16 @@ var imageOptimizeTask = function(src, dest) {
 };
 
 var optimizeHtmlTask = function(src, dest) {
-  var assets = $.useref.assets({
-    searchPath: ['.tmp', 'app']
-  });
+  //console.log(useref());
+  //var assets = useref.assets({
+  //  searchPath: ['.tmp', 'app']
+  //});
 
   return gulp.src(src)
-    .pipe(assets)
+    //.pipe(assets)
+    .pipe(useref({ 
+      searchPath: ['.tmp', 'app']
+    }))
     // Concatenate and minify JavaScript
     .pipe($.if('*.js', $.uglify({
       preserveComments: 'some'
@@ -84,8 +89,8 @@ var optimizeHtmlTask = function(src, dest) {
     // Concatenate and minify styles
     // In case you are still using useref build blocks
     .pipe($.if('*.css', $.minifyCss()))
-    .pipe(assets.restore())
-    .pipe($.useref())
+    //.pipe(assets.restore())
+    .pipe(useref())
     // Minify any HTML
     .pipe($.if('*.html', $.minifyHtml({
       quotes: true,
@@ -210,7 +215,7 @@ gulp.task('cache-config', function(callback) {
 
 // Clean output directory
 gulp.task('clean', function() {
-  return del(['.tmp', dist()]);
+  return del(['.tmp', dist()],{force:true});
 });
 
 // Watch files for changes & reload
