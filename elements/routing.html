@@ -14,9 +14,11 @@
       }
     console.log(app.baseUrl);
     page.base(app.baseUrl.replace(/\/$/, ''));
+
     function setFocus(selected){
       document.querySelector('section[data-route="' + selected + '"] .page-title').focus();
     }
+    
     page('/ourservices', function() {
        app.route = 'ourservices';
        setFocus(app.route);
