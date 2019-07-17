@@ -1,3 +1,5 @@
+console.log("stickyfillloaded");
+
 (function(doc, win) {
     var watchArray = [],
         scroll,

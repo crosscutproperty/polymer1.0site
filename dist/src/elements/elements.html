@@ -17570,30 +17570,33 @@ module.exports = Array.isArray || function (arr) {
 });</script>
 <script>
   window.addEventListener('WebComponentsReady', function() {
+    /*if (window.location.port === '' || window.location.port === '31999') {  // if production
+      page.base(app.baseUrl.replace(/\/$/, ''));
+    }*/
     if ( window.location.pathname.split("/")[1] == "dist"){
         app.baseUrl ='/dist/';
       }else{
         app.baseUrl ='/';
       }
-      page.base(app.baseUrl.replace(/\/$/, ''));
-    
+    console.log("baseurl:"+app.baseUrl);
+    page.base(app.baseUrl.replace(/\/$/, ''));
+
     function setFocus(selected){
       document.querySelector('section[data-route="' + selected + '"] .page-title').focus();
     }
+
     page('/ourservices', function() {
        app.route = 'ourservices';
        setFocus(app.route);
      })
-   page('/takeaction', function() {
+    page('/takeaction', function() {
       app.route = 'takeaction';
       setFocus(app.route);
     });
-
     page('/', function() {
       app.route = 'home';
       setFocus(app.route);
     });
-
     page('/home', function() {
       app.route = 'home';
       setFocus(app.route);
@@ -17635,7 +17638,7 @@ module.exports = Array.isArray || function (arr) {
     })();
 
     // add #! before urls
-    //page(page_config);
+    page(page_config);
 
   });
 </script>
@@ -19681,12 +19684,15 @@ Some useful helpers
            $('.sticky').Stickyfill();
         });
       var app = document.querySelector('#app');
+      /*app.baseUrl = '/polymer_crosscut_clientsite/app/index.html/';
+      if (window.location.port === '' || window.location.port === '443') {  // if production
+        app.baseUrl = '/';
+      }*/
       if ( window.location.pathname.split("/")[1] == "dist"){
         app.baseUrl ='/dist/';
       }else{
         app.baseUrl ='/';
       }
-
       app.displayInstalledToast = function() {
         // Check to make sure caching is actually enabled—it won't be in the dev environment.
         if (!Polymer.dom(document).querySelector('platinum-sw-cache').disabled) {
@@ -19694,9 +19700,9 @@ Some useful helpers
         }
       };
 
-      /*app.addEventListener('dom-change', function() {
-        console.log('Our app is ready to rock!');
-      });*/
+      app.addEventListener('dom-change', function() {
+        console.log('dom-change');
+      });
 
       //setRoutes(app);
     });

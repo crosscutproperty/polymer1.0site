@@ -1,29 +1,32 @@
 <!doctype html><script src="../bower_components/page/page.js"></script><script>
   window.addEventListener('WebComponentsReady', function() {
+    /*if (window.location.port === '' || window.location.port === '31999') {  // if production
+      page.base(app.baseUrl.replace(/\/$/, ''));
+    }*/
     if ( window.location.pathname.split("/")[1] == "dist"){
         app.baseUrl ='/dist/';
       }else{
         app.baseUrl ='/';
       }
-      page.base(app.baseUrl.replace(/\/$/, ''));
-    
+    console.log("baseurl:"+app.baseUrl);
+    page.base(app.baseUrl.replace(/\/$/, ''));
+
     function setFocus(selected){
       document.querySelector('section[data-route="' + selected + '"] .page-title').focus();
     }
+
     page('/ourservices', function() {
        app.route = 'ourservices';
        setFocus(app.route);
      })
-   page('/takeaction', function() {
+    page('/takeaction', function() {
       app.route = 'takeaction';
       setFocus(app.route);
     });
-
     page('/', function() {
       app.route = 'home';
       setFocus(app.route);
     });
-
     page('/home', function() {
       app.route = 'home';
       setFocus(app.route);
@@ -65,7 +68,7 @@
     })();
 
     // add #! before urls
-    //page(page_config);
+    page(page_config);
 
   });
 </script>
