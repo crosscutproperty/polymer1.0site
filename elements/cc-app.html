@@ -246,15 +246,15 @@
            $('.sticky').Stickyfill();
         });
       var app = document.querySelector('#app');
-      app.baseUrl = '/polymer_crosscut_clientsite/app/index.html/';
+      /*app.baseUrl = '/polymer_crosscut_clientsite/app/index.html/';
       if (window.location.port === '' || window.location.port === '443') {  // if production
         app.baseUrl = '/';
-      }
-      /*if ( window.location.pathname.split("/")[1] == "dist"){
+      }*/
+      if ( window.location.pathname.split("/")[1] == "dist"){
         app.baseUrl ='/dist/';
       }else{
         app.baseUrl ='/';
-      }*/
+      }
       app.displayInstalledToast = function() {
         // Check to make sure caching is actually enabled—it won't be in the dev environment.
         if (!Polymer.dom(document).querySelector('platinum-sw-cache').disabled) {
