@@ -1,0 +1,108 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="cc-navigator">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+            <!--#########################################################################
+                This is the mega-menu adapted from http://codepen.io/ahsanrathore/details/wMRwpZ
+                1. in-page anchors have been added and manipulated from #id:target{} style
+                2. drop-down menu if used has been changed to fill 100% page width
+                3. colors backgrounds and borders have been changed
+            #############################################################################-->
+	        <header class="light">
+                <div class="navbreak">
+                    <div class="unbrkbles">
+                        <nav class="selectable-content">
+                            <a href="#showmenu" class="ic menu">
+                              <span class="line"></span>
+                              <span class="line"></span>
+                              <span class="line"></span>
+                            </a>
+                        <content>
+                        </content>
+                            <a href="#showmenu" class="ic close"></a>
+                            <ul class="main-nav" id="showmenu"> 
+                                <li class="top-level-link">
+                                  <a><span>Company Directory</span></a>      
+                                </li>
+
+                                <li class="top-level-link">
+                                  <a><span>Services</span></a>      
+                                </li>
+
+                                <li class="top-level-link">
+                                  <a><span>Equipment</span></a>     
+                                            <div class="sub-menu-block">
+		                                        <h1 class="sub-menu-head">Equipment</h1>
+                                                            <div class="row" style="background-color: rgba(0, 0, 0, .8);min-height:4rem;">
+			                                            <div class="col-md-4 col-lg-4 col-sm-4">
+				                                            <h1 class="sub-menu-head">The equipment factor</h1>
+                                                                            <blockquote>Outstanding and well maintained equipment is key to a job done right. One of our jobs is to ensure all Tools and Equipment are in optimum condition. We use best in class zero turn lawn mowers, weedwhips, leaf blowers, bagging and collection aparatus. We take pride in our tools employing equipment from makers such as: Toro, Gravely, Husqavarna, 
+                                                                            </blockquote>
+				                                    </div>
+			                                            <div class="col-md-4 col-lg-4 col-sm-4">
+                                                                            <h1 class="sub-menu-head">Zero Turn Animation Heading</h1>
+                                                                            <blockquote>This is a test of the public broadcasting system
+                                                                            </blockquote>
+                                                                            <h1 class="sub-menu-head">Pulling blades on Z-turn</h1>
+                                                                            <blockquote>This is a test of the public broadcasting system
+                                                                            </blockquote>
+                                                                    </div>
+                                                                    <div class="col-md-4 col-lg-4 col-sm-4">
+                                                                            <h1 class="sub-menu-head">Equipment Videos</h1>
+                                                                            <blockquote>This is a test of the public broadcasting system
+                                                                            </blockquote>
+                                                                    </div>
+                                                                    <div class="col-md-4 col-lg-4 col-sm-4">
+                                                                            <h1 class="sub-menu-head">Service grades available</h1>
+                                                                            <blockquote>This is a test of the public broadcasting system
+					                                    </blockquote>
+                                                                    </div>
+                                                            </div>
+                                            </div> 
+                                </li>
+
+                            </ul>
+                        </nav> 
+                    </div>
+	            </div>
+            </header>
+
+    <div>Hello from <span>{{foo}}</span></div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'cc-navigator',
+
+      behaviors: [
+        Polymer.IronMenuBehavior
+      ],
+
+      properties: {
+        foo: {
+          type: String,
+          value: 'cc-navigator',
+          notify: true
+        }
+      }
+    });
+  })();
+  </script>
+</dom-module>
