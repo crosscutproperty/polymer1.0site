@@ -198,6 +198,20 @@ gulp.task('fonts2', function() {
       title: 'fonts2'
     }));
 });
+gulp.task('scripts', function() {
+  return gulp.src(['app/scripts/**'])
+    .pipe(gulp.dest(dist('scripts')))
+    .pipe($.size({
+      title: 'scripts'
+    }));
+});
+gulp.task('scripts2', function() {
+  return gulp.src(['app/src/scripts/**'])
+    .pipe(gulp.dest(dist('src/scripts')))
+    .pipe($.size({
+      title: 'scripts2'
+    }));
+});
 
 // Scan your HTML for assets & optimize them
 gulp.task('html', function() {
@@ -283,7 +297,7 @@ gulp.task('default', ['clean'], function(cb) {
   // Uncomment 'cache-config' if you are going to use service workers.
   runSequence(
     ['ensureFiles', 'copy', 'copy2', 'styles', 'styles2',],
-    ['images', 'images2', 'fonts', 'fonts2', 'html', 'html2'],
+    ['images', 'images2', 'fonts', 'fonts2', 'scripts', 'scripts2', 'html', 'html2'],
     'vulcanize', 'vulcanize2', // 'cache-config',
     cb);
 });
