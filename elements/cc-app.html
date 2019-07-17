@@ -246,11 +246,15 @@
            $('.sticky').Stickyfill();
         });
       var app = document.querySelector('#app');
-      if ( window.location.pathname.split("/")[1] == "dist"){
+      app.baseUrl = '/polymer_crosscut_clientsite/app/index.html/';
+      if (window.location.port === '' || window.location.port === '443') {  // if production
+        app.baseUrl = '/';
+      }
+      /*if ( window.location.pathname.split("/")[1] == "dist"){
         app.baseUrl ='/dist/';
       }else{
         app.baseUrl ='/';
-      }
+      }*/
       app.displayInstalledToast = function() {
         // Check to make sure caching is actually enabled—it won't be in the dev environment.
         if (!Polymer.dom(document).querySelector('platinum-sw-cache').disabled) {
@@ -258,11 +262,11 @@
         }
       };
 
-      /*app.addEventListener('dom-change', function() {
-        console.log('Our app is ready to rock!');
-      });*/
+      app.addEventListener('dom-change', function() {
+        console.log('dom-change');
+      });
 
-      //setRoutes(app);
+      setRoutes(app);
     });
   })();
   </script>
