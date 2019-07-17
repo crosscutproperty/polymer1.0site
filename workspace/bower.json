@@ -8,7 +8,6 @@
     "paper-elements": "PolymerElements/paper-elements#^1.0.1",
     "platinum-elements": "PolymerElements/platinum-elements#^1.1.0",
     "polymer": "Polymer/polymer#^1.2.0",
-    "firebase-element": "GoogleWebComponents/firebase-element#^1.0.12",
     "app-route": "PolymerElements/app-route#^0.9.3",
     "iron-pages": "PolymerElements/iron-pages#^1.0.8"
   },
@@ -18,7 +17,6 @@
   "ignore": [],
   "resolutions": {
     "polymer": "^1.2.0",
-    "webcomponentsjs": "^0.7.20",
-    "firebase-element": "^0.5.6"
+    "webcomponentsjs": "^0.7.20"
   }
 }

@@ -1,0 +1,16 @@
+<!doctype html><html><head><title>PolymerFirebaseCodeLab</title><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><script src="https://www.crosscutproperty.com/bower_components/webcomponentsjs/webcomponents-lite.js"></script><link rel="import" href="bower_components/iron-icons/iron-icons.html"><link rel="import" href="bower_components/paper-toolbar/paper-toolbar.html"><link rel="import" href="bower_components/paper-button/paper-button.html"><link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html"><link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html"><link rel="import" href="bower_components/paper-fab/paper-fab.html"><link rel="import" href="bower_components/paper-tabs/paper-tabs.html"><link rel="import" href="bower_components/paper-toast/paper-toast.html"><link rel="import" href="bower_components/iron-ajax/iron-ajax.html"><link rel="import" href="firebase-element/firebase-auth.html"><link rel="import" href="firebase-element/firebase.html"><link rel="import" href="bower_components/paper-input/paper-input.html"><link rel="stylesheet" href="styles.css"></head><body unresolved=""><template is="dom-bind" id="app"><firebase-auth location="[[firebaseURL]]" provider="[[firebaseProvider]]" on-error="onFirebaseError" on-login="onFirebaseLogin" on-logout="onFirebaseLogout" status-known="true"></firebase-auth><paper-toast id="errorToast"></paper-toast><paper-button on-click="openToast">Open Toast</paper-button><paper-toast id="toast" text="Hello world!"></paper-toast><script>
+  var logout = document.querySelector('firebase-auth').logout;
+  var login = document.querySelector('firebase-auth').login;
+</script><a href="#" onclick="logout()">Logout</a> <a href="#" onclick="login()">Login</a><form on-submit="addItem"><paper-input value="{{newItemValue}}" placeholder="Enter your item here..."></paper-input><paper-button on-click="addItem">Add</paper-button></form><template is="dom-repeat" items="{{items}}"><div><paper-icon-button icon="delete" on-click="deleteItem"></paper-icon-button><paper-checkbox on-change="toggleItem" checked="{{item.done}}">[[item.text]]</paper-checkbox></div></template><form on-submit="addReferral"><paper-input value="{{newReferralValue}}" placeholder="Enter your item here..."></paper-input><paper-button on-click="addReferral">Add Referral</paper-button></form><template is="dom-repeat" items="{{referrals}}"><div><paper-icon-button icon="delete" on-click="deleteItem"></paper-icon-button><paper-checkbox on-change="toggleItem" checked="{{item.done}}">[[item.text]]</paper-checkbox></div></template><script>logout = function(){
+  console.log('logout');
+        document.querySelector('firebase-auth').logout();
+};
+login = function(){
+  console.log('login');
+        document.querySelector('firebase-auth').login();
+};</script><script src="mainthree.js"></script><script>
+ /* myref = new Firebase("https://crosscut.firebaseio.com");
+  var credential = myref.auth.GoogleAuthProvider.credential(
+    googleUser.getAuthResponse().id_token);
+    console.log(window.JSON.stringify(credential));*/
+    </script></template></body></html>

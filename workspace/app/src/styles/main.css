@@ -1,0 +1,359 @@
+/*################################
+Base Styles
+##################################*/
+html {
+	      height:100%;
+	      font-size:32px;
+}
+body {
+        display:block;
+        position:relative;
+        min-width:100%;
+        width:100%;
+        margin: 0px;
+        min-height:100%;
+
+        padding-top:0px;
+        padding-right:0px;
+        padding-left:0px;
+margin-bottom:26.55%;
+        //padding-bottom:26.55%;
+        //border:solid red 10px;
+        //margin:0px;
+        font-family: 'Open Sans', sans-serif;
+        background-color:rgba(40, 87, 40, 1) !important;
+        height:auto;
+}
+/*body:after{
+            content: "Just the bottom of the page";
+            display:block;
+            min-width:100%;
+            width:100%;
+            height:16px;
+            background-color: rgba(255, 255, 255, .4);
+            padding-bottom:26.55%;
+        }*/
+#pageplaceholder {
+  display:block;
+  min-height:100vh;
+  height:auto;
+  //border:solid green 5px;
+}
+/*#app {
+  display:block;
+  min-height:100vh;
+  height:auto;
+  border:solid green 5px;
+}*/
+div#page-container{
+        z-index:90;
+        padding:0px!important;
+        margin: 0px !important;
+        height:auto !important;
+}
+div#companyname{
+        /**********************************************
+            This is the header text at top the page
+        ***********************************************/
+        display:block;
+        position: fixed;
+        z-index:109 !important;
+        top:0px;
+        left:0px;
+        width: -webkit-calc(100% - 0px);
+        width:calc(100% - 0px);
+        height:42px;
+        margin-top:10.24px;
+        margin-bottom:10.24px;
+        font: 40px 'Arizonia', Helvetica, sans-serif;
+        font-weight: 100;
+        color: #4c4c4c;
+        background-color: rgba(255, 255, 255, .4);
+  -o-transition:background-color .2s ease-out, background-color 1s ease-in;
+  -ms-transition:background-color .2s ease-out, background-color 1s ease-in;
+  -moz-transition:background-color .2s ease-out, background-color 1s ease-in;
+  -webkit-transition:background-color .2s ease-out, background-color 1s ease-in;
+  transition:background-color .2s ease-out, background-color 1s ease-in;
+        height:auto;
+        }
+div#outro{
+        /**********************************************
+            This is the header text at top the page
+        ***********************************************/
+        display:block;
+        position: fixed;
+        z-index:109 !important;
+        bottom:0px;
+        left:0px;
+        overflow: hidden;
+        width: -webkit-calc(100% - 0px);
+        width:calc(100% - 0px);
+        margin-top:0px;
+        margin-bottom:0px;
+        padding:0px;
+        font: 40px 'Arizonia', Helvetica, sans-serif;
+        font-weight: 100;
+        color: #4c4c4c;
+        background-color: transparent;/*rgba(40, 87, 40, 1);*/
+        height:auto;
+}
+div#outro > span{
+        display:block;
+        position:relative;
+        z-index:13 !important;
+        //overflow:hidden;
+        bottom:-56px;
+        left:0px;
+        width: -webkit-calc(100% - 0px);
+        width:calc(100% - 0px);
+        margin-bottom:10.24px;
+        background-color: #7E9A7E;/*rgba(255, 255, 255, .4);*/
+        height:auto;
+}
+.verticalTranslateUp {
+       animation: up 1s linear infinite;
+       -webkit-animation: up 1s forwards linear infinite;
+       -moz-animation: up 1s forwards linear infinite;
+       -o-animation: up 1s forwards linear infinite;
+       animation-iteration-count: 1;
+       animation-fill-mode: forwards;
+}
+@keyframes up {
+       0%  { bottom: calc(0px-100%); } /* When you start the slide, the first image is already visible */
+       12%  { bottom: calc(0px-88%); } /* Original Position */
+       25% { bottom: calc(0px-75%); } /* From 4% to 16 % = for 3 seconds the image is visible */
+       37% { bottom: calc(0px-63%); } /* From 16% to 20% = for 1 second exit image */
+       50% { bottom: calc(0px-50%); } /* Return to Original Position */
+       62% { bottom: calc(0px-38%); }
+       75% { bottom: calc(0px-25%); } /* From 96% to 100% = for 1 second enter image*/
+       87% { bottom: calc(0px-13%); }
+       100% { bottom: 0; }
+
+}
+.verticalTranslateDown {
+       animation: down 2s linear infinite;
+       -webkit-animation: down 2s forwards linear infinite;
+       -moz-animation: down 2s forwards linear infinite;
+       -o-animation: down 2s forwards linear infinite;
+       animation-iteration-count: 1;
+       animation-fill-mode: forwards;
+}
+@keyframes down {
+       0%  { bottom: 0; }
+       12% { bottom:calc(0px-13%); }
+       25% { bottom:calc(0px-25%); }
+       37% { bottom:calc(0px-38%);}
+       50% { bottom:calc(0px-50%);}
+       62% { bottom:calc(0px-63%);}
+       75% { bottom:calc(0px-75%);}
+       87% { bottom:calc(0px-88%);}
+       100%{ bottom:calc(0px-100%);}
+}
+
+@media only screen and (max-width: 539px){
+      div#companyname, div#outro{
+            font: 30px 'Arizonia', Helvetica, sans-serif;
+      }
+      #navplaceholder{
+        max-height:0px !important;
+        min-height:0px !important;
+        height:0px !important;
+      }
+
+}
+@media only screen and (max-width: 419px){
+      div#companyname, div#outro{
+            font: 22px 'Arizonia', Helvetica, sans-serif;
+      }
+      #nav-placeholder{
+      }
+}
+/*################################
+Navigator Styles All Sizes
+##################################*/
+#navplaceholder{
+      width:100%;
+      min-height:60px;
+      height:60px;
+}
+cc-navigator ul.main-nav > li > a {
+      display: block;
+      padding: 20px 30px;
+      position: relative;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 400;
+      box-sizing: border-box;
+      background-color: rgba(0, 0, 0, .8);
+}
+cc-navigator ul.main-nav {
+      display:block;
+      list-style-type: none;
+      padding: 0px;
+      font-size: 0px;
+      background-color: transparent;
+      text-align:center;
+}
+cc-navigator ul.main-nav > li {
+      display: inline-block;
+      padding: 0;
+      background-color:transparent;
+}
+
+/*################################
+Navigator Styles Full Width
+##################################*/
+@media only screen and (min-width: 72rem) {
+  cc-navigator .ic.menu { display: none; }
+
+      /* Main Menu for Desktop Devices  */
+      cc-navigator ul.main-nav {
+          background-color:transparent;
+          display:block;
+          margin:auto;
+          padding:0;
+          height:100%;
+      }
+      cc-navigator ul.main-nav  > li{
+          background-color:transparent;
+          display:inline-block;
+          margin:3px;
+          padding:0px;
+          width:210px !important;
+          min-width:210px !important;
+          background-color: rgba(0, 0, 0, .8);
+          height:100%;
+          min-height:100%;
+      }
+      cc-navigator .sub-menu-block { padding: 15px; }
+      /* Sub Menu */
+      cc-navigator ul.main-nav > li > div.sub-menu-block {
+          display: block;
+          visibility: hidden;
+          position: absolute;
+          top:0;
+          left:0;
+          min-width:100%;
+          max-width:100%;
+          width:100%;
+          margin: 0px;
+          color: #333;
+          box-sizing: border-box;
+          z-index : 3;
+          font-size: 16px;
+          opacity: 0;
+
+          /*CSS animation applied for sub menu : Slide from Top */
+          -webkit-transition: all 0.4s ease 0s;
+          -o-transition: all 0.4s ease 0s;
+          transition: all 0.4s ease 0s;
+          -webkit-transform: rotateX(90deg);
+          -moz-transform: rotateX(90deg);
+          -ms-transform: rotateX(90deg);
+          transform: rotateX(90deg);
+          -webkit-transform-origin: top center;
+          -ms-transform-origin: top center;
+          transform-origin: top center;
+      }
+      cc-navigator ul.main-nav > li:hover > div.sub-menu-block {
+          background-color: transparent;
+          visibility: visible;
+          opacity: 1;
+          -webkit-transform: rotateX(0deg);
+          -moz-transform: rotateX(0deg);
+          -ms-transform: rotateX(0deg);
+          transform: rotateX(0deg);
+      }
+      cc-navigator ul.main-nav > li:hover > div.sub-menu-block > div.row{
+          background-color: rgba(0, 0, 0, .8);
+      }
+      cc-navigator ul.main-nav > li > div.sub-menu-block > * {
+        -webkit-transition-property: opacity;
+        -moz-transition-property: opacity;
+        -o-transition-property: opacity;
+        transition-property: opacity;
+       	-webkit-transition-duration: 0.4s;
+    	  -moz-transition-duration: 0.4s;
+    	  -o-transition-duration: 0.4s;
+        transition-duration: 0.4s;
+        opacity: 0;
+      }
+      cc-navigator ul.main-nav > li:hover > div.sub-menu-block > * {
+        opacity: 1;
+      }
+      cc-navigator ul.main-nav > li ul.sub-menu-lists > li a {
+        color: #eee;
+        font-size: 14px;
+      }
+      cc-navigator .sub-menu-head {
+        font-size: 16px;
+      }
+      /* List Separator: Outer Border */
+      cc-navigator ul.main-nav > li > a { background-color:transparent;border: 1px solid #bbb; }
+      /* Drop Down/Up Arrow for Mega Menu */
+      cc-navigator ul.main-nav > li > a.mega-menu > span { background-color:transparent; display: block; vertical-align: middle; }
+      cc-navigator ul.main-nav > li > a.mega-menu > span:after {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #fff;
+        content: '';
+        background-color: transparent;
+        display: inline-block;
+        margin-left: 10px;
+        vertical-align: middle;
+      }
+      cc-navigator ul.main-nav > li:hover > a.mega-menu span:after {
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 0px solid transparent;
+        border-bottom: 5px solid #666;
+        background-color:transparent;
+      }
+      .banners-area { border-top: 1px solid #ccc; }
+}
+/*###############################################
+Navigator Styles Smaller
+Transitioned to cc-navigator component
+#################################################*/
+/*#########################################
+Wraps IronPages
+###########################################*/
+.content-page {
+      display:block;
+      position:relative;
+      width:100%;
+      height:100%;
+}
+.content-page > paper-material{
+      display:block;
+      width:100%;
+      height:100%;
+}
+
+.content-page {
+      display:block;
+      position:relative;
+      width:100%;
+      height:100%;
+}
+.content-page > paper-material{
+      display:block;
+      width:100%;
+      height:100%;
+}
+.page-title {
+      outline: none;
+}
+
+/***
+Some useful helpers
+*********/
+.txtwrap{
+     white-space: pre-wrap   !important;    /* css-3 */
+     white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+     white-space: -pre-wrap !important;      /* Opera 4-6 */
+     white-space: -o-pre-wrap !important;    /* Opera 7 */
+     word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
+}

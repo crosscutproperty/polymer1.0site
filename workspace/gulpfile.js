@@ -110,7 +110,9 @@ var optimizeHtmlTask = function(src, dest) {
 gulp.task('styles', function() {
   return styleTask('styles', ['**/*.css']);
 });
-
+gulp.task('styles2', function() {
+  return styleTask('src/styles', ['**/*.css']);
+});
 // Ensure that we are not missing required files for the project
 // "dot" files are specifically tricky due to them being hidden on
 // some systems.
@@ -125,6 +127,9 @@ gulp.task('ensureFiles', function(cb) {
 // Optimize images
 gulp.task('images', function() {
   return imageOptimizeTask('app/images/**/*', dist('images'));
+});
+gulp.task('images2', function() {
+  return imageOptimizeTask('app/src/images/**/*', dist('src/images'));
 });
 
 // Copy all files at the root level (app)
@@ -152,6 +157,31 @@ gulp.task('copy', function() {
     }));
 });
 
+// Copy all files at the root level (src)
+gulp.task('copy2', function() {
+  var app = gulp.src([
+    'app/src/*',
+     '!app/src/test',
+     '!app/src/elements',
+     '!app/src/bower_components',
+     '!app/src/cache-config.json',
+     '!**/.DS_Store'
+   ], {
+     dot: true
+   }).pipe(gulp.dest(dist('src')));
+  // Copy over only the bower_components we need
+  // These are things which cannot be vulcanized
+  var bower = gulp.src([
+    'app/src/bower_components/{webcomponentsjs,platinum-sw,sw-toolbox,promise-polyfill}/**/*'
+  ]).pipe(gulp.dest(dist('src/bower_components')));
+
+  return merge(app, bower)
+    .pipe($.size({
+      title: 'copy2'
+    }));
+});
+    
+
 // Copy web fonts to dist
 gulp.task('fonts', function() {
   return gulp.src(['app/fonts/**'])
@@ -160,12 +190,27 @@ gulp.task('fonts', function() {
       title: 'fonts'
     }));
 });
+// Copy web fonts to dist
+gulp.task('fonts2', function() {
+  return gulp.src(['app/src/fonts/**'])
+    .pipe(gulp.dest(dist('src/fonts')))
+    .pipe($.size({
+      title: 'fonts2'
+    }));
+});
 
 // Scan your HTML for assets & optimize them
 gulp.task('html', function() {
   return optimizeHtmlTask(
     ['app/**/*.html', '!app/{elements,test,bower_components}/**/*.html'],
     dist());
+});
+
+// Scan your HTML for assets & optimize them might not need it!!
+gulp.task('html2', function() {
+  return optimizeHtmlTask(
+    ['app/src/**/*.html', '!app/src/{elements,test,bower_components}/**/*.html'],
+    dist('src'));
 });
 
 // Vulcanize granular configuration
@@ -178,6 +223,18 @@ gulp.task('vulcanize', function() {
     }))
     .pipe(gulp.dest(dist('elements')))
     .pipe($.size({title: 'vulcanize'}));
+});
+
+// Vulcanize granular configuration
+gulp.task('vulcanize2', function() {
+  return gulp.src('app/src/elements/elements.html')
+    .pipe($.vulcanize({
+      stripComments: true,
+      inlineCss: true,
+      inlineScripts: true
+    }))
+    .pipe(gulp.dest(dist('src/elements')))
+    .pipe($.size({title: 'vulcanize2'}));
 });
 
 // Generate config data for the <sw-precache-cache> element.
@@ -215,99 +272,68 @@ gulp.task('cache-config', function(callback) {
   });
 });
 
-// Clean output directory
+// Clean output directory 
+/*Requires options {force:true} if dist is outside project directory */
 gulp.task('clean', function() {
   return del(['.tmp', dist()],{force:true});
-});
-
-// Watch files for changes & reload
-gulp.task('serve', ['styles'], function() {
-  browserSync({
-    port: 5000,
-    notify: false,
-    logPrefix: 'PSK',
-ghostMode: false,
-    /*snippetOptions: {
-      rule: {
-        match: '<span id="browser-sync-binding"></span>',
-        fn: function(snippet) {
-          return snippet;
-        }
-      }
-    },*/
-    // Run as an https by uncommenting 'https: true'
-    // Note: this uses an unsigned certificate which on first access
-    //       will present a certificate warning in the browser.
-    // https: true,
-    server: {
-      baseDir: ['.tmp', 'app'],
-      middleware: [historyApiFallback()]
-    }
-  });
-
-  //gulp.watch(['app/**/*.html', '!app/bower_components/**/*.html'], reload);
-  //gulp.watch(['app/styles/**/*.css'], ['styles', reload]);
-  //gulp.watch(['app/scripts/**/*.js'], reload);
-  //gulp.watch(['app/images/**/*'], reload);
-});
-
-// Build and serve the output from the dist build
-gulp.task('serve:dist', ['default'], function() {
-  browserSync({
-    port: 5001,
-    notify: false,
-    logPrefix: 'PSK',
-ghostMode: false,
-    /*snippetOptions: {
-      rule: {
-        match: '<span id="browser-sync-binding"></span>',
-        fn: function(snippet) {
-          return snippet;
-        }
-      }
-    },*/
-    // Run as an https by uncommenting 'https: true'
-    // Note: this uses an unsigned certificate which on first access
-    //       will present a certificate warning in the browser.
-    // https: true,
-    server: dist(),
-    middleware: [historyApiFallback()]
-  });
 });
 
 // Build production files, the default task
 gulp.task('default', ['clean'], function(cb) {
   // Uncomment 'cache-config' if you are going to use service workers.
   runSequence(
-    ['ensureFiles', 'copy', 'styles'],
-    ['images', 'fonts', 'html'],
-    'vulcanize', // 'cache-config',
+    ['ensureFiles', 'copy', 'copy2', 'styles', 'styles2',],
+    ['images', 'images2', 'fonts', 'fonts2', 'html', 'html2'],
+    'vulcanize', 'vulcanize2', // 'cache-config',
     cb);
 });
 
-// Build then deploy to GitHub pages gh-pages branch
-gulp.task('build-deploy-gh-pages', function(cb) {
-  runSequence(
-    'default',
-    'deploy-gh-pages',
-    cb);
-});
+/*****
+ * NOTES: 
+ * This gulpfile is adapted from Polymer 2.0 PSK
+ * - Not using `gulp serve` or livereload
+ * - Deploy to GitHub pages gh-pages is removed and not used
+ * Application directory structure has changed to:
+ * root |
+ *      |- dist      |
+ *                   |-app |index.html,robots.txt
+ *                         |tests | 
+ *                         |src   |favicon.ico, manifest.json,
+ *                                |bower_components,elements,fonts,images,scripts,styles
+ *      |- workspace | --- app dir shown below will later be renamed dev and moved to root/dev
+ *                   |-app |index.html,robots.txt
+ *                         |tests | 
+ *                         |src   |favicon.ico, manifest.json,
+ *                                |bower_components,elements,fonts,images,scripts,styles
+ * *******************
+ 
+ * - GitHub static page is served from the master:root
+ * - Public webaccess is managed through cloudflare workers
 
-// Deploy to GitHub pages gh-pages branch
-gulp.task('deploy-gh-pages', function() {
-  return gulp.src(dist('**/*'))
-    // Check if running task from Travis CI, if so run using GH_TOKEN
-    // otherwise run using ghPages defaults.
-    .pipe($.if(process.env.TRAVIS === 'true', $.ghPages({
-      remoteUrl: 'https://$GH_TOKEN@github.com/polymerelements/polymer-starter-kit.git',
-      silent: true,
-      branch: 'gh-pages'
-    }), $.ghPages()));
-});
 
-// Load tasks for web-component-tester
-// Adds tasks for `gulp test:local` and `gulp test:remote`
-require('web-component-tester').gulp.init(gulp);
+/****
+ * Deploy to GitHub pages gh-pages branch
+ *  Github organizations do not have gh-pages - this is not used
+ *  If deploying to github pages on organization this will not work
+ * ******/
+
+ // Build then deploy to GitHub pages gh-pages branch
+ //gulp.task('build-deploy-gh-pages', function(cb) {
+ // runSequence(
+ //   'default',
+ //   'deploy-gh-pages',
+ //   cb);
+ //});
+ //gulp.task('deploy-gh-pages', function() {
+  // return gulp.src(dist('**/*'))
+  // Check if running task from Travis CI, if so run using GH_TOKEN
+  // otherwise run using ghPages defaults.
+  // .pipe($.if(process.env.TRAVIS === 'true', $.ghPages({
+    //    remoteUrl: 'https://$GH_TOKEN@github.com/polymerelements/polymer-starter-kit.git',
+    //    silent: true,
+    //    branch: 'gh-pages'
+  // }), $.ghPages()));
+//});
 
 // Load custom tasks from the `tasks` directory
 try {

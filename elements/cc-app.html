@@ -246,13 +246,7 @@
            $('.sticky').Stickyfill();
         });
       var app = document.querySelector('#app');
-      //app.baseUrl = '/polymer_crosscut_clientsite/app/index.html/';
-      //if (window.location.port === '' || window.location.port === '443') {  // if production
-      //  app.baseUrl = '/';
-      //}
       if ( window.location.pathname.split("/")[1] == "dist"){
-        console.log("baseurl:"+app.baseUrl);
-        console.log("location-path:"+window.location.pathname.split("/")[1]);
         app.baseUrl ='/dist/';
       }else{
         app.baseUrl ='/';

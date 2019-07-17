@@ -1,0 +1,10 @@
+<br>
+<div class="panel panel-default">
+  <create-building building="buildingCtrl.building" on-submit="buildingCtrl.insert()" />
+</div>
+
+<br>
+<div class="panel panel-success">
+  <edit-buildings buildings="buildingCtrl.buildings" on-edit="buildingCtrl.update(id)"
+                 on-delete="buildingCtrl.remove(id)"/>
+</div>

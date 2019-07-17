@@ -20,14 +20,27 @@ The layout class stylesheet provides a simple set of class-based flexbox rules, 
 let you specify layout properties directly in markup. You must include this file
 in every element that needs to use them.
 
-  Sample use:
+    Sample use:
 
-      <link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
-      <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
+    ```
+    <custom-element-demo>
+      <template>
+        <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+        <next-code-block></next-code-block>
+      </template>
+    </custom-element-demo>
+    ```
 
-      <div class="layout horizontal layout-start">
-        <div>cross axis start alignment</div>
-      </div>
+    ```html
+    <link rel="import" href="iron-flex-layout-classes.html">
+    <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
+    <style>
+      .test { width: 100px; }
+    </style>
+    <div class="layout horizontal center-center">
+      <div class="test">horizontal layout center alignment</div>
+    </div>
+    ```
 
 2. [Custom CSS mixins](https://github.com/PolymerElements/iron-flex-layout/blob/master/iron-flex-layout.html).
 The mixin stylesheet includes custom CSS mixins that can be applied inside a CSS rule using the `@apply` function.
@@ -46,8 +59,18 @@ A complete [guide](https://elements.polymer-project.org/guides/flex-layout) to `
 @demo demo/index.html
 -->
 
-<style>
-  /* IE 10 support for HTML5 hidden attr */
+<script>
+  // This is left only for backward compatibility with projects
+  // that incorrectly relied on unscoped global [hidden] rules;
+  // removing would be a breaking change, but new projects
+  // should never rely on this.
+  (function() {
+    var style = document.createElement('style');
+    style.textContent = '[hidden] { display: none !important; }';
+    document.head.appendChild(style);
+  })();
+</script>
+<style is="custom-style">
   [hidden] {
     display: none !important;
   }
@@ -104,6 +127,12 @@ A complete [guide](https://elements.polymer-project.org/guides/flex-layout) to `
       -ms-flex-wrap: wrap;
       -webkit-flex-wrap: wrap;
       flex-wrap: wrap;
+    };
+
+    --layout-no-wrap: {
+      -ms-flex-wrap: nowrap;
+      -webkit-flex-wrap: nowrap;
+      flex-wrap: nowrap;
     };
 
     --layout-wrap-reverse: {

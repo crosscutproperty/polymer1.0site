@@ -1,0 +1,26 @@
+<!doctype html><html><head><meta charset="UTF-8"><title>test-helpers basic tests</title><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><script src="../../webcomponentsjs/webcomponents-lite.js"></script><script src="../../web-component-tester/browser.js"></script><script src="../test-helpers.js"></script></head><body><script>
+    suite('TestHelpers', function() {
+      suite('class registration', function() {
+        test('registers to window', function() {
+          expect(TestHelpers).to.exist;
+          expect(TestHelpers.forceXIfStamp).to.exist;
+          expect(forceXIfStamp).to.exist;
+        });
+
+        test('registers to this', function() {
+          // Download the script with a synchronous xhr.
+          var xhr = new XMLHttpRequest();
+          xhr.open('get', '../test-helpers.js', false);
+          xhr.send();
+          expect(xhr.responseText).to.exist;
+          // Execute it in a specific context.
+          var context = {};
+          Function(xhr.responseText).call(context);
+          expect(context.TestHelpers).to.exist;
+          expect(context.TestHelpers.forceXIfStamp).to.exist;
+          expect(context.forceXIfStamp).to.exist;
+        });
+      });
+    });
+
+  </script></body></html>

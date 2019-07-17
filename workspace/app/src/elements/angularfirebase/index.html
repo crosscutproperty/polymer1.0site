@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Example App with Angular & AngularFire</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+
+<body ng-app="firebaseApp">
+  <!-- Add your site or application content here -->
+  <div class="container">
+    <div ng-include="'menu/menu.tpl.html'"></div>
+
+    <div ng-view=""></div>
+
+    <div class="footer">
+      <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+    </div>
+  </div>
+
+  <!-- External libs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+  <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
+  <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+
+  <!-- application scripts -->
+  <script src="app.js"></script>
+  <script src="auth.svc.js"></script>
+  <script src="authToken.fctry.js"></script>
+  <script src="menu/menu.ctl.js"></script>
+  <script src="main/main.ctl.js"></script>
+  <script src="apartment/apartment.ctl.js"></script>
+  <script src="apartment/apartment.svc.js"></script>
+  <script src="apartment/apartment.dir.js"></script>
+  <script src="building/building.ctl.js"></script>
+  <script src="building/building.svc.js"></script>
+  <script src="building/create-building.dir.js"></script>
+  <script src="building/edit-buildings.dir.js"></script>
+
+  <!-- factory vs. service example -->
+  <script src="fact-svc/my.fctry.js"></script>
+  <script src="fact-svc/myState.fctry.js"></script>
+  <script src="fact-svc/my.svc.js"></script>
+  <script src="fact-svc/my.ctl.js"></script>
+
+  <!-- domain models -->
+  <script src="domain/apartment.js"></script>
+  <script src="domain/building.js"></script>
+  <script src="domain/resident.js"></script>
+</body>
+</html>

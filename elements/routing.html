@@ -2,37 +2,29 @@
 <script src="../bower_components/page/page.js"></script>
 <script>
   window.addEventListener('WebComponentsReady', function() {
-    //if (window.location.port === '' || window.location.port === '31999') {  // if production
-    //  page.base(app.baseUrl.replace(/\/$/, ''));
-    //}
     if ( window.location.pathname.split("/")[1] == "dist"){
-        console.log("baseurl:"+app.baseUrl);
-        console.log("location-path:"+window.location.pathname.split("/")[1]);
         app.baseUrl ='/dist/';
       }else{
         app.baseUrl ='/';
       }
-    console.log(app.baseUrl);
     page.base(app.baseUrl.replace(/\/$/, ''));
 
     function setFocus(selected){
       document.querySelector('section[data-route="' + selected + '"] .page-title').focus();
     }
-    
+
     page('/ourservices', function() {
        app.route = 'ourservices';
        setFocus(app.route);
      })
-   page('/takeaction', function() {
+    page('/takeaction', function() {
       app.route = 'takeaction';
       setFocus(app.route);
     });
-
     page('/', function() {
       app.route = 'home';
       setFocus(app.route);
     });
-
     page('/home', function() {
       app.route = 'home';
       setFocus(app.route);
@@ -68,14 +60,13 @@
 
     page_config = (function(){
       var hashbang = (window.location.port === '' ? false : true)
-      console.log(hashbang);
       return {
         hashbang:hashbang
       }
     })();
 
     // add #! before urls
-    page(page_config);
+    //page(page_config);
 
   });
 </script>
