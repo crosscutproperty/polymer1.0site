@@ -296,14 +296,14 @@ gulp.task('default', ['clean'], function(cb) {
  * Application directory structure has changed to:
  * root |
  *      |- dist      |
- *                   |-app |index.html,robots.txt
+ *                   |-app |index.html,noscript.html,favicon.ico, manifest.json,robots.txt
  *                         |tests | 
- *                         |src   |favicon.ico, manifest.json,
+ *                         |src   |
  *                                |bower_components,elements,fonts,images,scripts,styles
  *      |- workspace | --- app dir shown below will later be renamed dev and moved to root/dev
- *                   |-app |index.html,robots.txt
+ *                   |-app |index.html,noscript.html,favicon.ico,manifest.json,robots.txt
  *                         |tests | 
- *                         |src   |favicon.ico, manifest.json,
+ *                         |src   |
  *                                |bower_components,elements,fonts,images,scripts,styles
  * *******************
  
