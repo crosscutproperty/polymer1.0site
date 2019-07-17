@@ -1,0 +1,277 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "constants":{
+      /*############################################
+      //As constants are needed for logical operations and security
+      //and write once forget it values. We will add them
+      ######################################*/
+      ".validate": "newData.hasChildren(['contactsPerClient'])",
+      "contactsPerClient": {},
+      "itemsPerUser":{},
+      "$restricted": {//This catches all children not declared
+        ".validate": false
+      }
+    },
+    "users":{
+      /***************************************************
+      The solution to permissions issues, admin
+      **********************************************/
+      ".read": "auth !== null 
+        && root.child('users/'+auth.uid+'/permGroup').val() === 'admin'",
+      ".write": "auth !== null  
+        && (   (newData.child(auth.uid).exists()
+        && !root.child('users/'+auth.uid).exists())
+        /*********************************************
+        Important this rule must check an admin list
+        for existance in admin, this list must only
+        be accessable by a systemadmin
+        *****************************/
+        || root.child('users/'+auth.uid+'/permGroup').val() === 'admin'    )",
+
+        
+      "$user_id":{
+        /*############################################
+        The following read/write rules cascade from parent
+        NOTE: Cannot deny permission given from parent
+        ######################################
+        CAREFUL: Must ensure clientside that a user
+        does not overwrite their own user, they will
+        only be able to enter themselves once but
+        can overwrite that same record over and over
+        there is no way to enforce that from here
+        with out authenticating an action by updating
+        a table without providing client a private rsa
+        key and interacting with firebase from server
+        ######################################*/
+        ".read": "auth !== null
+          && (($user_id === auth.uid) 
+          || root.child('users/'+auth.uid+'/permGroup').val() === 'admin')",
+        ".write": "auth !== null  
+          && (   (!newData.child(auth.uid).exists()
+          && root.child('users/'+auth.uid).exists()
+          && newData.child('idValue').val() === auth.uid 
+          && $user_id === auth.uid) ) 
+          || root.child('users/'+auth.uid+'/permGroup').val() === 'admin'",
+          ".validate": "newData.hasChildren(['idValue'])",
+          "idValue":{".validate": "newData.isString()"},
+          "permGroup":{
+            //Because we cannot deny permissions given from parent
+            //we will not be able to restrict on perm group because the user can write
+            //To ensure permission the client will need to itteratively
+            //try to access their user in permissionsgrouplist
+            //We will update the permission group here and make that
+            //the first one we check before itterating throught the others.
+            //user may only belong to one group -- we will build subgroups
+            //under the client to give limited access directly on clients
+            //where current clientowner can add permission to other users
+            //via a unique id for the request presented on screen to clientowner
+            //the new user must enter to gain access.
+            ".read": false,".write": false,".validate": "newData.isString()"
+          },
+          "contactId":{".validate": "newData.isString()"},
+          "$restricted": {//This catches all children not declared
+            ".validate": false
+          }
+      }    
+    },
+    "contacts":{
+      ".read": "auth !== null 
+        && root.child('users/'+auth.uid+'/permGroup').val() === 'admin'",
+      ".write": "(auth !== null 
+        && (newData.exists() && !data.exists()) && root.child('users/'+auth.uid).exists()              
+        && root.child('clients/'+ newData.child('clientids/_clientIdVal').val()+'/contactCount').val() < root.child('constants/contactsPerClient').val())
+        || (auth !== null && root.child('users/'+auth.uid+'/permGroup').val() === 'admin')",
+      "$contactId":{
+        /*#############################################
+        Important contactId cannot be written to without
+        a clientIdVal in newData that already exists in clients/
+        ##########################################*/        
+        ".validate": "newData.hasChildren(['ownerUserId','fname','lname','phone','email','timestamp','clientids','clientIdVal'])",
+        ".write":"auth !== null 
+          && newData.exists() 
+          && (!data.exists() || data.exists()) 
+          && root.child('users/'+auth.uid).exists()
+          && newData.child('_clientIdVal').exists()
+          /*####################################
+          Also important: $contactId must also 
+          be added to the clientId record before that contactId
+          can be removed or changed with the supplied client id
+          Add not null on newData to disable delete. and handle
+          updayes only. Add validation to ensure format
+          conforms with current definitions in constants / session
+          ###########################################*/
+          && root.child('clients/'+newData.child('_clientIdVal').val()).exists()
+          && root.child('clients/'+newData.child('_clientIdVal').val()+'/hasContacts/'+$contactId).exists()",
+        "ownerUserId":{},
+        "clientids":{
+            /*#############################################
+            Contacts have a many to one relationship with clients
+            Contacts have a 1 to {0-1) relationship with self admin users
+            All Contacts have a many to one relationship with ownerUser
+            if self admin the user will be made the ownerUser -
+            user can search themselves with matching address by
+            API to services hosted not on the client for privacy
+            Will need to request approval to merge
+            ##########################################*/
+            "_clientIdVal":{".write":"newData.exists() && (!data.exists() || data.exists()) && root.child('users/'+auth.uid).exists()"},
+            "$clientId":{"idValue":{".read": false,".write":false}}
+          },
+          "$restricted": {//This catches all children not declared
+            ".validate": false
+          }
+      } 
+    },
+    "clients":{
+      ".read": "auth !== null 
+      && root.child('users/'+auth.uid+'/permGroup').val() === 'admin'",
+      ".write": "auth !== null  
+      && (root.child('users/'+auth.uid).exists()
+      || root.child('users/'+auth.uid+'/permGroup').val() === 'admin')",
+
+      "$clientId":{
+        ".read": "auth !== null
+        && ((root.child('clients/'+$clientId+'/ownerUserId').exists() 
+        && root.child('clients/'+$clientId+'/ownerUserId').val() === auth.uid) 
+        || root.child('users/'+auth.uid+'/permGroup').val() === 'admin')",
+        ".write": "auth !== null  
+        && (   (newData.child('contactId').exists()
+        && root.child('users/'+auth.uid).exists()
+        && newData.child('ownerUserId').val() === auth.uid) ) 
+          || root.child('users/'+auth.uid+'/permGroup').val() === 'admin'",
+        "ownerUserId":{},
+        "primaryContactId":{},
+        "properties":{
+          "$propertyId":{"idValue":{}}  
+        },
+        "billsTo":{".validate": "newData.hasChildren(['name','addr','city','state','zip'])
+                   && newData.child('name').isString()
+                   && newData.child('addr').isString() 
+                   && newData.child('city').isString() 
+                   && newData.child('state').isString() 
+                   && newData.child('zip').isString() 
+                   && newData.child('timestamp').isNumber()"
+        },
+        "$restricted": {//This catches all children not declared
+          ".validate": false
+        } 
+      }
+    },
+    "properties":{
+      "$propertyId":{".validate": "newData.hasChildren(['addr','city','state','zip','timestamp']) 
+                  && newData.child('propstaddr').isString() 
+                  && newData.child('propcity').isString() 
+                  && newData.child('propstate').isString() 
+                  && newData.child('propzip').isString() 
+                  && newData.child('timestamp').isNumber()"       
+      }
+    },
+    "contracts":{
+      "$contractId":{".validate": "newData.hasChildren(['$clientid','properties','origindate','modifieddate','renewaldate','termsupfront'])",
+        "properties":{
+          "$propertyId":{".validate": "newData.hasChildren(['services','addedToContractOn'])
+                  && newData.child('addedToContractOn').isNumber()",
+            "services":{
+              "$serviceId":{".validate": "newData.hasChildren(['heading','description','billingcycle','itemcharge','category'])"}
+            }      
+          }
+        }
+      }    
+    },
+    "pricingrequests":{
+      "$request":{".validate": "newData.hasChildren(['$clientId','propertyId','services'])",
+        "services":{
+          "$service":{".validate": "newData.hasChildren(['heading','description','category'])"} 
+        }
+      } 
+    },
+    "exampleusers":{
+      ".read": false,
+      ".write": false,
+      "$userId":{
+        ".read": false,
+        ".write": true
+          
+      }  
+    },
+    "items":{
+      ".read": "auth !== null 
+        && root.child('users/'+auth.uid+'/permGroup').val() === 'admin'",
+      ".write": "auth !== null  
+        && (   (newData.child(auth.uid).exists()
+        && !root.child('items/'+auth.uid).exists())
+        || root.child('users/'+auth.uid+'/permGroup').val() === 'admin'    )",
+
+      "$userId":{
+        
+        ".read": "auth !== null
+        && (($userId === auth.uid) 
+        || root.child('users/'+auth.uid+'/permGroup').val() === 'admin')",
+        ".write": "auth !== null  
+        && (   !newData.child(auth.uid).exists()
+        && root.child('users/'+auth.uid).exists()
+        && root.child('items/'+auth.uid).exists()
+        && $userId === auth.uid ) 
+        || root.child('users/'+auth.uid+'/permGroup').val() === 'admin'",
+        //Unfortunately we cannot restrict the number of items without
+        //a counter - in this case the counter must be updated from a client
+        //with a transaction call from client machine
+        "count":{},
+/****************************************
+".write": "(auth !== null             
+&& root.child('items/'+$userId+'/itemcount').val() < root.child('constants/itemsPerUser').val()
+|| (auth !== null && root.child('users/'+auth.uid+'/permGroup').val() === 'admin')",
+********************************************/
+        "items":{
+          "$item":{
+            //inherits permissions from parent 
+            "done":{},
+            "text":{".validate": "newData.isString()"},
+            "$restricted": {//This catches all children not declared
+            ".validate": false
+            }
+          }
+        },
+        "$restricted": {//This catches all children not declared
+            ".validate": false
+          }
+      }   
+    },
+    "permissionGroups":{
+      "systemadmin":{
+        "userlist":{
+        },
+        "referencepaths":{
+        },
+        "enhancedreferencepaths":{
+        },
+        "$restricted": {//This catches all children not declared
+        ".validate": false
+        }
+      },
+      "datamanagement":{},
+      "businessmanagement":{},
+      "$restricted": {//This catches all children not declared
+      ".validate": false
+      }
+    },
+    "$restricted": {//This catches all children not declared
+      ".validate": false
+    }
+  }  
+}
+
+/*
+I am concerned that if I listen to
+        //events from my server and try to update the counts after the 
+        //action, multiple more updates can be made before my server 
+        //catches up, this will leave a window where the client machine
+        //can and will push this to the limit - if I have a specific
+        //requirement to restrict to a certain number of children at this
+        //time I will have to send a request to my own data services
+        //and complete the update from there. Firebase is helpful in offloading
+        //my storage and providing a base template for me to work from inc
+        //configuring my own setup, right now we count. simple add new child 
+        //static property, so why can't the object emerge
+*/
