@@ -4,35 +4,35 @@
   "start_url": ".",
   "description": "Cross Cut Property Services, Lawn and Property Care, Minneapolis Saint Paul Metroplitan Area Minnesota",
   "icons": [{
-        "src": "images/touch/cc-icon-72x72.png",
+        "src": "assets/images/touch/cc-icon-72x72.png",
         "sizes": "72x72",
         "type": "image/png"
       }, {
-        "src": "images/touch/cc-icon-96x96.png",
+        "src": "assets/images/touch/cc-icon-96x96.png",
         "sizes": "96x96",
         "type": "image/png"
       }, {
-        "src": "images/touch/cc-icon-128x128.png",
+        "src": "assets/images/touch/cc-icon-128x128.png",
         "sizes": "128x128",
         "type": "image/png"
       }, {
-        "src": "images/touch/cc-ms-touch-icon-144x144.png",
+        "src": "assets/images/touch/cc-ms-touch-icon-144x144.png",
         "sizes": "144x144",
         "type": "image/png"
       }, {
-        "src": "images/touch/cc-apple-touch-icon.png",
+        "src": "assets/images/touch/cc-apple-touch-icon.png",
         "sizes": "152x152",
         "type": "image/png"
       }, {
-        "src": "images/touch/cc-chrome-touch-icon-192x192.png",
+        "src": "assets/images/touch/cc-chrome-touch-icon-192x192.png",
         "sizes": "192x192",
         "type": "image/png"
       },{
-        "src": "images/touch/cc-chrome-splashscreen-icon-384x384.png",
+        "src": "assets/images/touch/cc-chrome-splashscreen-icon-384x384.png",
         "sizes": "384x384",
         "type": "image/png"
       },{
-        "src": "images/touch/cc-icon-512x512.png",
+        "src": "assets/images/touch/cc-icon-512x512.png",
         "sizes": "512x512",
         "type": "image/png"
       }],

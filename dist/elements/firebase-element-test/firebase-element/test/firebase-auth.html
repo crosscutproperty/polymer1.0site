@@ -1,0 +1,24 @@
+<!doctype html><html><head><title>firebase-auth</title><script src="../../webcomponentsjs/webcomponents.js"></script><script src="../../web-component-tester/browser.js"></script><script src="../../test-fixture/test-fixture-mocha.js"></script><link rel="import" href="../../polymer/polymer.html"><link rel="import" href="../../promise-polyfill/promise-polyfill.html"><link rel="import" href="../../test-fixture/test-fixture.html"><link rel="import" href="test-helpers.html"><link rel="import" href="../firebase-auth.html"></head><body><test-fixture id="TrivialAuth"><template><firebase-auth location="https://fb-element-demo.firebaseio.com" log=""></firebase-auth></template></test-fixture><script>
+    suite('<firebase-auth>', function() {
+      var firebase;
+
+      suite('basic usage', function() {
+        setup(function() {
+          firebase = fixture('TrivialAuth');
+        });
+
+        teardown(function() {
+          firebase.logout();
+        });
+
+        test('allows anonymous authentication', function(done) {
+          waitForEvent(firebase, 'login').then(function() {
+            expect(firebase.ref.getAuth()).to.not.equal(null);
+            done();
+          });
+
+          firebase.login();
+        });
+      });
+    });
+  </script></body></html>

@@ -44,16 +44,19 @@ var AUTOPREFIXER_BROWSERS = [
 ];
 
 var DIST = '../dist';
-var DEV = '../dev';
+var DEV = '../app';
 var WORKSPACE = './';
 
 var dist = function(subpath) {
   return !subpath ? DIST : path.join(DIST, subpath);
 };
+var dev = function(subpath) {
+  return !subpath ? DEV : path.join(DEV, subpath);
+}
 
 var styleTask = function(stylesPath, srcs) {
   return gulp.src(srcs.map(function(src) {
-      return path.join('app', stylesPath, src);
+      return path.join('../app', stylesPath, src);
     }))
     .pipe($.changed(stylesPath, {extension: '.css'}))
     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
@@ -82,7 +85,7 @@ var optimizeHtmlTask = function(src, dest) {
   return gulp.src(src)
     //.pipe(assets)
     .pipe(useref({ 
-      searchPath: ['.tmp', 'app']
+      searchPath: ['../app/assets/.tmp', '../app/assets']
     }))
     // Concatenate and minify JavaScript
     .pipe($.if('*.js', $.uglify({
@@ -111,7 +114,7 @@ gulp.task('styles', function() {
   return styleTask('styles', ['**/*.css']);
 });
 gulp.task('styles2', function() {
-  return styleTask('src/styles', ['**/*.css']);
+  return styleTask('assets/styles', ['**/*.css']);
 });
 // Ensure that we are not missing required files for the project
 // "dot" files are specifically tricky due to them being hidden on
@@ -126,20 +129,21 @@ gulp.task('ensureFiles', function(cb) {
 
 // Optimize images
 gulp.task('images', function() {
-  return imageOptimizeTask('app/images/**/*', dist('images'));
+  return imageOptimizeTask('../app/assets/images/**/*', dist('images'));
 });
 gulp.task('images2', function() {
-  return imageOptimizeTask('app/src/images/**/*', dist('src/images'));
+  return imageOptimizeTask('../app/assets/images/**/*', dist('assets/images'));
 });
 
 // Copy all files at the root level (app)
 gulp.task('copy', function() {
   var app = gulp.src([
-    'app/*',
-    '!app/test',
-    '!app/elements',
-    '!app/bower_components',
-    '!app/cache-config.json',
+    '../app/{index.html,noscript.html,favicon.ico,manifest.json,robots.txt}',
+    '../app/assets/*',
+    '!../app/assets/test',
+    '!../app/assets/elements',
+    '!../app/assets/bower_components',
+    '!../app/assets/cache-config.json',
     '!**/.DS_Store'
   ], {
     dot: true
@@ -148,7 +152,7 @@ gulp.task('copy', function() {
   // Copy over only the bower_components we need
   // These are things which cannot be vulcanized
   var bower = gulp.src([
-    'app/bower_components/{webcomponentsjs,platinum-sw,sw-toolbox,promise-polyfill}/**/*'
+    '../app/assets/bower_components/{webcomponentsjs,platinum-sw,sw-toolbox,promise-polyfill}/**/*'
   ]).pipe(gulp.dest(dist('bower_components')));
 
   return merge(app, bower)
@@ -160,20 +164,21 @@ gulp.task('copy', function() {
 // Copy all files at the root level (src)
 gulp.task('copy2', function() {
   var app = gulp.src([
-    'app/src/*',
-     '!app/src/test',
-     '!app/src/elements',
-     '!app/src/bower_components',
-     '!app/src/cache-config.json',
+     '../app/{index.html,noscript.html,favicon.ico,manifest.json,robots.txt}',
+     '../app/assets/*',
+     '!../app/assets/test',
+     '!../app/assets/elements',
+     '!../app/assets/bower_components',
+     '!../app/assets/cache-config.json',
      '!**/.DS_Store'
    ], {
      dot: true
-   }).pipe(gulp.dest(dist('src')));
+   }).pipe(gulp.dest(dist('assets')));
   // Copy over only the bower_components we need
   // These are things which cannot be vulcanized
   var bower = gulp.src([
-    'app/src/bower_components/{webcomponentsjs,platinum-sw,sw-toolbox,promise-polyfill}/**/*'
-  ]).pipe(gulp.dest(dist('src/bower_components')));
+    '../app/assets/bower_components/{webcomponentsjs,platinum-sw,sw-toolbox,promise-polyfill}/**/*'
+  ]).pipe(gulp.dest(dist('assets/bower_components')));
 
   return merge(app, bower)
     .pipe($.size({
@@ -184,7 +189,7 @@ gulp.task('copy2', function() {
 
 // Copy web fonts to dist
 gulp.task('fonts', function() {
-  return gulp.src(['app/fonts/**'])
+  return gulp.src(['../app/assets/fonts/**'])
     .pipe(gulp.dest(dist('fonts')))
     .pipe($.size({
       title: 'fonts'
@@ -192,22 +197,22 @@ gulp.task('fonts', function() {
 });
 // Copy web fonts to dist
 gulp.task('fonts2', function() {
-  return gulp.src(['app/src/fonts/**'])
-    .pipe(gulp.dest(dist('src/fonts')))
+  return gulp.src(['../app/assets/fonts/**'])
+    .pipe(gulp.dest(dist('assets/fonts')))
     .pipe($.size({
       title: 'fonts2'
     }));
 });
 gulp.task('scripts', function() {
-  return gulp.src(['app/scripts/**'])
+  return gulp.src(['../app/assets/scripts/**'])
     .pipe(gulp.dest(dist('scripts')))
     .pipe($.size({
       title: 'scripts'
     }));
 });
 gulp.task('scripts2', function() {
-  return gulp.src(['app/src/scripts/**'])
-    .pipe(gulp.dest(dist('src/scripts')))
+  return gulp.src(['../app/assets/scripts/**'])
+    .pipe(gulp.dest(dist('assets/scripts')))
     .pipe($.size({
       title: 'scripts2'
     }));
@@ -216,20 +221,20 @@ gulp.task('scripts2', function() {
 // Scan your HTML for assets & optimize them
 gulp.task('html', function() {
   return optimizeHtmlTask(
-    ['app/**/*.html', '!app/{elements,test,bower_components}/**/*.html'],
+    ['../app/assets/**/*.html', '!app/assets/{elements,test,bower_components}/**/*.html'],
     dist());
 });
 
 // Scan your HTML for assets & optimize them might not need it!!
 gulp.task('html2', function() {
   return optimizeHtmlTask(
-    ['app/src/**/*.html', '!app/src/{elements,test,bower_components}/**/*.html'],
-    dist('src'));
+    ['../app/assets/**/*.html', '!../app/assets/{elements,test,bower_components}/**/*.html'],
+    dist('assets'));
 });
 
 // Vulcanize granular configuration
 gulp.task('vulcanize', function() {
-  return gulp.src('app/elements/elements.html')
+  return gulp.src('../app/assets/elements/elements.html')
     .pipe($.vulcanize({
       stripComments: true,
       inlineCss: true,
@@ -241,13 +246,13 @@ gulp.task('vulcanize', function() {
 
 // Vulcanize granular configuration
 gulp.task('vulcanize2', function() {
-  return gulp.src('app/src/elements/elements.html')
+  return gulp.src('../app/assets/elements/elements.html')
     .pipe($.vulcanize({
       stripComments: true,
       inlineCss: true,
       inlineScripts: true
     }))
-    .pipe(gulp.dest(dist('src/elements')))
+    .pipe(gulp.dest(dist('assets/elements')))
     .pipe($.size({title: 'vulcanize2'}));
 });
 
@@ -289,7 +294,7 @@ gulp.task('cache-config', function(callback) {
 // Clean output directory 
 /*Requires options {force:true} if dist is outside project directory */
 gulp.task('clean', function() {
-  return del(['.tmp', dist()],{force:true});
+  return del(['../app/assets/.tmp', dist()],{force:true});
 });
 
 // Build production files, the default task
@@ -310,15 +315,16 @@ gulp.task('default', ['clean'], function(cb) {
  * Application directory structure has changed to:
  * root |
  *      |- dist      |
- *                   |-app |index.html,noscript.html,favicon.ico, manifest.json,robots.txt
- *                         |tests | 
- *                         |src   |
- *                                |bower_components,elements,fonts,images,scripts,styles
- *      |- workspace | --- app dir shown below will later be renamed dev and moved to root/dev
- *                   |-app |index.html,noscript.html,favicon.ico,manifest.json,robots.txt
- *                         |tests | 
- *                         |src   |
- *                                |bower_components,elements,fonts,images,scripts,styles
+ *                   |index.html,noscript.html,favicon.ico, manifest.json,robots.txt
+ *                   |assets|
+ *                          |bower_components,elements,fonts,images,scripts,styles
+ *      |- app       |
+ *                   |index.html,noscript.html,favicon.ico,manifest.json,robots.txt
+ *                   |assets|
+ *                          |bower_components,elements,fonts,images,scripts,styles
+ *      |- workspace | gulpfile.js
+ *                   | node_modules
+ *                   | 
  * *******************
  
  * - GitHub static page is served from the master:root
