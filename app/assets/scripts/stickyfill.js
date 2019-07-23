@@ -1,4 +1,4 @@
-console.log("stickyfillloaded");
+//console.log("stickyfillloaded");
 
 (function(doc, win) {
     var watchArray = [],
