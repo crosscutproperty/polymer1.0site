@@ -95,7 +95,9 @@ div#outro{
         font-weight: 100;
         color: #4c4c4c;
         background-color: transparent;/*rgba(40, 87, 40, 1);*/
-        height:auto;
+        height:auto !important;
+        max-height:30vh !important;
+        border:solid blue 2px !important;
 }
 div#outro > span{
         display:block;
@@ -108,7 +110,9 @@ div#outro > span{
         width:calc(100% - 0px);
         margin-bottom:10.24px;
         background-color: #7E9A7E;/*rgba(255, 255, 255, .4);*/
-        height:auto;
+        height:auto !important;
+        max-height:30vh !important;
+        border:solid red 2px !important;
 }
 .verticalTranslateUp {
        animation: up 1s linear infinite;

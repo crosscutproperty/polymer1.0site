@@ -35,9 +35,12 @@
                 display: none;
             }
         }
+        paper-material {
+          height:auto !important;
+        }
 
         </style>
-        <div id="companyname" style="">Cross Cut Property Services Inc.</div>
+        <div id="companyname">Cross Cut Property Services Inc.</div>
 
         <cc-title-bar unitid="crosscutproperty/2016" id="titlebar">
           <!--###############################################################
@@ -68,7 +71,8 @@
 
         <!-- Main Content -->
         <div class="content" id="page-container" style="">
-          <iron-pages attr-for-selected="data-route" selected="{{route}}" style="z-index:70"> <!-- !important; margin:0px !important; padding:0px !important;height:auto !important;">-->
+          <iron-pages attr-for-selected="data-route" selected="{{route}}" style="z-index:70; margin:0px !important; padding:0px !important;height:auto !important"> 
+            <!-- !important; margin:0px !important; padding:0px !important;height:auto !important;">-->
 
 <!--#################-->
             <section data-route="home" tabindex="-1" class="content-page" style="margin:0px;padding:0px;">
@@ -149,7 +153,7 @@
 
 <!--#################-->
             <section data-route="equipment" tabindex="-1" class="content-page">
-              <paper-material elevation="1">
+              <paper-material elevation="1" >
                   <h1 class="page-title" tabindex="-1">Equipment</h1>
                         <p>Outstanding and well maintained equipment is key to a job done right. One of our jobs is to ensure all Tools and Equipment are in optimum condition.
                            We use best in class zero turn lawn mowers, weedwhips, leaf blowers, bagging and collection aparatus. We take pride in our tools employing equipment

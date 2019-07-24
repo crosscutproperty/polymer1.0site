@@ -71,8 +71,8 @@ function updatePosition() {
 
         if(TitleBarRect.bottom <= CompanyNameRect.bottom && thankyoustate === false){
           thankyoustate = true;
-          OutroHeight = OutroRect.bottom - OutroRect.top;
-          OutroSpanHeight = OutroSpanRect.bottom - OutroSpanRect.top;
+          //OutroHeight = OutroRect.bottom - OutroRect.top;
+          //OutroSpanHeight = OutroSpanRect.bottom - OutroSpanRect.top;
           OutroSpan.classList.remove('verticalTranslateDown');
           OutroSpan.classList.add('verticalTranslateUp');
 
@@ -97,7 +97,8 @@ function dealWithCSSQuirks(){
     ThankYouHeight = ThankYouRect.bottom - ThankYouRect.top+20;
     ThankYouNewBottom = 0 - ThankYouHeight;
     ThankYouNewBottom += "px";
-    ThankYou.style.setProperty('height',ThankYouHeight);
+    //ThankYou.style.setProperty('height',ThankYouHeight);
+    ThankYou.style.setProperty('height', 'auto');
     ThankYou.style.setProperty('bottom',ThankYouNewBottom);
 }
 
