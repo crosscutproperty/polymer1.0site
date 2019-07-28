@@ -17574,7 +17574,8 @@ module.exports = Array.isArray || function (arr) {
       page.base(app.baseUrl.replace(/\/$/, ''));
     }*/
     if ( window.location.pathname.split("/")[1] == "dist"){
-        app.baseUrl ='/dist/';
+        //app.baseUrl ='/dist/';
+        app.baseUrl ='/';
       }else{
         app.baseUrl ='/';
       }
@@ -19692,7 +19693,8 @@ Some useful helpers
         app.baseUrl = '/';
       }*/
       if ( window.location.pathname.split("/")[1] == "dist"){
-        app.baseUrl ='/dist/';
+        //app.baseUrl ='/dist/';
+        app.baseUrl ='/';
       }else{
         app.baseUrl ='/';
       }
